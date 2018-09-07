@@ -1,0 +1,108 @@
+<mat-card class="example-card">
+  <mat-card-title>Register</mat-card-title>
+  <!-- <mat-card-subtitle>Register</mat-card-subtitle> -->
+  <mat-card-content>
+    <form class="example-form">
+      <mat-form-field>
+        <mat-select placeholder="Title">
+          <mat-option *ngFor="let value of salutation.value" [value]="value">
+            {{value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" value="Nilesh">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Middle Name" value="Dharmant">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" value="Singh">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <!--
+      <input type="file" accept=".pdf" ng2FileSelect [uploader]="uploader"/>
+      -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="First name">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Last Name">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <p>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Address"></textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Address 2"></textarea>
+        </mat-form-field>
+      </p>
+
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="City">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="State">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Country">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="94043">
+              <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="">
+              <span matPrefix>+91 &nbsp;</span>
+              <input type="tel" matInput placeholder="Phone Number">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="">
+              <span matPrefix>+91 &nbsp;</span>
+              <input type="tel" matInput placeholder="Alternate Phone Number">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+</mat-card>
