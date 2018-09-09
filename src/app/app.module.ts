@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   FormControl,
   FormGroupDirective,
+  FormsModule,
   NgForm,
   Validators
 } from '@angular/forms';
@@ -44,12 +45,14 @@ import {
   MatTooltipModule
 } from '@angular/material';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ListComponent } from './list/list.component';
+
+import { FileDropModule } from 'ngx-file-drop';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,7 @@ import { ListComponent } from './list/list.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FileDropModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
