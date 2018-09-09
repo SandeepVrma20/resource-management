@@ -6,7 +6,6 @@ import {
   ReactiveFormsModule,
   FormControl,
   FormGroupDirective,
-  FormsModule,
   NgForm,
   Validators
 } from '@angular/forms';
