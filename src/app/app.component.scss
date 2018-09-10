@@ -4,8 +4,14 @@
     bottom: 0;
     left: 0;
     right: 0;
-  }
+}
 
 .toolbar-spacer {
     flex: 1 1 auto;
-  }
+}
+
+.sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
