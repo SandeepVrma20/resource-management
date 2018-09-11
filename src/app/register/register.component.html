@@ -1,6 +1,5 @@
 <mat-card class="example-card">
   <mat-card-title>Register</mat-card-title>
-  <!-- <mat-card-subtitle>Register</mat-card-subtitle> -->
   <mat-card-content>
     <form class="">
       <mat-form-field class="">
@@ -39,20 +38,6 @@
           Email is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-      <table class="" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="">
-              <input matInput placeholder="First name">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="">
-              <input matInput placeholder="Last Name">
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
 
       <p>
         <mat-form-field class="">
@@ -111,7 +96,11 @@
         </tr>
       </table>
     </form>
-    <input type="file" placeholder="Upload file">
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Upload Resume</mat-card-title>
     <div class="center">
       <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
         (onFileLeave)="fileLeave($event)">
