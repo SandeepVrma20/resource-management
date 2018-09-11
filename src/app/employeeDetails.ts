@@ -1,14 +1,20 @@
-export class EmployeeDetails {
-  id: number;
-  name: String = '';
-  age: number;
-  phone: String = '';
-  title: String = '';
-  firstName: String = '';
-  lastName: String = '';
-  middleName: String = '';
+export interface EmployeeDetails {
+  employeeId: number;
+  title: string;
+  firstName: string;
+  lastName: string;
+  middleName: string;
   dob: Date;
-  email: String = '';
-  resume: object = null;
-  creationDate: Date = null;
+  email: string;
+  age: number;
+  phone: string;
+  alternatePhone: number;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  state: string;
+  country: string;
+  pinCode: number;
+  resume: object;
+  creationDate: Date;
 }
