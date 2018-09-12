@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Salutation } from './../constants';
-import { EmployeeDetails } from './../employeeDetails';
+
+import { EmployeeService } from '../employee.service';
+import { Salutation } from '../constants';
+import { EmployeeDetails } from '../employeeDetails';
+
 import {
   trigger,
   state,
@@ -18,8 +21,35 @@ import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry 
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+	
+	employee: EmployeeDetails = new EmployeeDetails();
 
-  constructor() { }
+  constructor(private employeeService: EmployeeService) { }
+  
+ 
+  
+
+  newEmployee(){
+	  
+	  var employeeDet  = {
+    name:  this.employee.firstName,
+    age:  "28",
+    phone:  123456789,
+    title:  "This is the third contact",
+    firstName: this.employee.firstName,
+    lastName:  this.employee.lastName,
+    middleName:this.employee.middleName,
+    email: "",
+    resume: "00121212101",
+	creationDate : new Date()
+};
+	  
+	  alert('inside alert--- >' + employeeDet.firstName);
+	   this.employeeService.createEmployee(employeeDet)
+      .subscribe(data => console.log(data), error => console.log(error));
+    this.employee = new EmployeeDetails();
+	  
+  }
 
   salutation = Salutation;
   employeeDetails: EmployeeDetails;

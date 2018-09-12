@@ -11,13 +11,13 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="First Name" value="Nilesh">
+        <input matInput placeholder="First Name"  required [(ngModel)]="employee.firstName" name="firstName">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Middle Name" value="Dharmant">
+        <input matInput placeholder="Middle Name"  [(ngModel)]="employee.middleName" name="middleName">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Last Name" value="Singh">
+        <input matInput placeholder="Last Name"  required [(ngModel)]="employee.lastName" name="lastName">
       </mat-form-field>
       <mat-form-field>
         <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
@@ -103,8 +103,7 @@
           </td>
         </tr>
       </table>
-    </form>
-    <input type="file" placeholder="Upload file">
+	 <input type="file" placeholder="Upload file">
     <div class="center">
       <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
         (onFileLeave)="fileLeave($event)">
@@ -112,11 +111,7 @@
       </file-drop>
       <div class="upload-table">
         <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
+
           <tbody class="upload-name-style">
             <tr *ngFor="let item of files; let i=index">
               <td><strong>{{ item.relativePath }}</strong></td>
@@ -125,5 +120,9 @@
         </table>
       </div>
     </div>
+	
+	 <button type="submit" class="btn btn-success" (click)="newEmployee()">Register</button>
+   
+	 </form>
   </mat-card-content>
 </mat-card>
