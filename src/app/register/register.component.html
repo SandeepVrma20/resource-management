@@ -9,34 +9,34 @@
 
         <form class="">
           <mat-form-field class="">
-            <input matInput #postalCode placeholder="Employee Id." value="">
+            <input matInput placeholder="Employee Id." value="">
           </mat-form-field>
           <br />
           <mat-form-field>
             <mat-select placeholder="Title">
-              <mat-option *ngFor="let value of salutation.value" [value]="value">
+              <mat-option *ngFor="let value of salutation.value" [value]="value" required>
                 {{value}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="">
-            <input matInput placeholder="First Name" value="">
+            <input matInput placeholder="First Name" value="" required>
           </mat-form-field>
           <mat-form-field class="">
             <input matInput placeholder="Middle Name" value="">
           </mat-form-field>
           <mat-form-field class="">
-            <input matInput placeholder="Last Name" value="">
+            <input matInput placeholder="Last Name" value="" required>
           </mat-form-field>
           <br />
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <br />
           <mat-form-field class="">
-            <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+            <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" required>
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               Please enter a valid email address
             </mat-error>
@@ -68,7 +68,7 @@
 
           <mat-form-field class="">
             <span matPrefix>+91 &nbsp;</span>
-            <input type="tel" matInput placeholder="Phone Number">
+            <input type="tel" matInput placeholder="Phone Number" required>
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
 
@@ -86,6 +86,7 @@
 <mat-card>
   <mat-card-content>
     <mat-card-title>Upload Resume</mat-card-title>
+    <input type="file" >
     <div class="center">
       <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
         (onFileLeave)="fileLeave($event)">
