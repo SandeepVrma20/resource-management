@@ -16,7 +16,7 @@ export class EmployeeService {
   }
 
   createEmployee(employees: Object): Observable<Object> {
-	 // alert('inside services' + employees.firstName + 'url :- ' + `${this.baseUrl}` + `/insert`);
+	  alert('inside services' + employees + 'url :- ' + `${this.baseUrl}` + `/insert`);
     return this.http.post(`${this.baseUrl}` + `/insert`, employees);
   }
 

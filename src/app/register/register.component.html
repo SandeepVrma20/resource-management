@@ -8,36 +8,38 @@
           <mat-panel-title>Personal Details</mat-panel-title>
         </mat-expansion-panel-header>
 
-        <form class="">
+        <form class="" >
           <mat-form-field class="">
-            <input matInput placeholder="Employee Id." value="">
+            <input matInput placeholder="Employee Id." value="" name="employeeId" [(ngModel)]="employeedetails.employeeId" >
           </mat-form-field>
           <br />
           <mat-form-field>
             <mat-select placeholder="Title">
-              <mat-option *ngFor="let value of salutation.value" [value]="value" required>
+              <mat-option *ngFor="let value of salutation.value" [value]="value" required  >
                 {{value}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="">
-            <input matInput placeholder="First Name" value="" required [(ngModel)]="employee.firstName" name="firstName">
+            <input name ="firstName" matInput placeholder="First Name" value="" required  [(ngModel)]="employeedetails.firstName"  >
           </mat-form-field>
           <mat-form-field class="">
-            <input matInput placeholder="Middle Name" value="" [(ngModel)]="employee.middleName" name="middleName">
+            <input matInput placeholder="Middle Name" value="" name="middleName" [(ngModel)]="employeedetails.middleName" >
           </mat-form-field>
           <mat-form-field class="">
-            <input matInput placeholder="Last Name" value="" required [(ngModel)]="employee.lastName" name="lastName">
+            <input matInput placeholder="Last Name" value="" required name="lastName" [(ngModel)]="employeedetails.lastName"  >
           </mat-form-field>
           <br />
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" required>
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" required 
+                        name="dob" [(ngModel)]="employeedetails.dob" > 
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <br />
           <mat-form-field class="">
-            <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" required>
+            <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" required 
+            name="email" [(ngModel)]="employeedetails.email" >
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               Please enter a valid email address
             </mat-error>
@@ -47,85 +49,37 @@
           </mat-form-field>
           <br />
           <mat-form-field class="">
-            <textarea matInput placeholder="Address"></textarea>
+            <textarea matInput placeholder="Address" name="addressLine1" [(ngModel)]="employeedetails.addressLine1" ></textarea>
           </mat-form-field>
           <mat-form-field class="">
-            <textarea matInput placeholder="Address 2"></textarea>
+            <textarea matInput placeholder="Address 2" name="addressLine2" [(ngModel)]="employeedetails.addressLine2" ></textarea>
           </mat-form-field>
 
           <mat-form-field class="">
-            <input matInput placeholder="City">
+            <input matInput placeholder="City" name="city" [(ngModel)]="employeedetails.city" > 
           </mat-form-field>
           <mat-form-field class="">
-            <input matInput placeholder="State">
+            <input matInput placeholder="State" name="state" [(ngModel)]="employeedetails.state" > 
           </mat-form-field>
           <mat-form-field class="">
-            <input matInput placeholder="Country">
+            <input matInput placeholder="Country" name="country" [(ngModel)]="employeedetails.country" >
           </mat-form-field>
           <mat-form-field class="">
-            <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="">
+            <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="" 
+                  name="pincode" [(ngModel)]="employeedetails.pincode" >
             <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
           </mat-form-field>
 
-<<<<<<< HEAD
-      <table class="" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="">
-              <input matInput placeholder="City">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="">
-              <input matInput placeholder="State">
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="">
-              <input matInput placeholder="Country">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="">
-              <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="">
-              <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-      <table class="" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="">
-              <span matPrefix>+91 &nbsp;</span>
-              <input type="tel" matInput placeholder="Phone Number">
-              <mat-icon matSuffix>mode_edit</mat-icon>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="">
-              <span matPrefix>+91 &nbsp;</span>
-              <input type="tel" matInput placeholder="Alternate Phone Number">
-              <mat-icon matSuffix>mode_edit</mat-icon>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-
-=======
           <mat-form-field class="">
             <span matPrefix>+91 &nbsp;</span>
-            <input type="tel" matInput placeholder="Phone Number" required>
+            <input type="tel" matInput placeholder="Phone Number" required name="phone" [(ngModel)]="employeedetails.phone" >
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
 
           <mat-form-field class="">
             <span matPrefix>+91 &nbsp;</span>
-            <input type="tel" matInput placeholder="Alternate Phone Number">
+            <input type="tel" matInput placeholder="Alternate Phone Number" 
+                name="alternatePhone" [(ngModel)]="employeedetails.alternatePhone" >
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
 
@@ -138,7 +92,6 @@
   <mat-card-content>
     <mat-card-title>Upload Resume</mat-card-title>
     <input type="file" >
->>>>>>> 9e8f763ee93ab9ae99f50ffdee8acee423e398b1
     <div class="center">
       <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
         (onFileLeave)="fileLeave($event)">
@@ -156,10 +109,10 @@
         </table>
       </div>
     </div>
-	
-	 <button type="submit" class="btn btn-success" (click)="newEmployee()">Register</button>
+		 <button type="submit" class="btn btn-success" (click)="newEmployee()">Register</button>
    
-	 </form>
+    <button mat-raised-button color="primary">Submit</button>
+	
   </mat-card-content>
-  <button mat-raised-button color="primary">Submit</button>
+ 
 </mat-card>

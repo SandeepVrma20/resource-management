@@ -1,4 +1,4 @@
-export interface EmployeeDetails {
+export class EmployeeDetails {
   employeeId: number;
   title: string;
   firstName: string;
@@ -17,4 +17,6 @@ export interface EmployeeDetails {
   pinCode: number;
   resume: object;
   creationDate: Date;
+
+  
 }

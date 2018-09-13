@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { EmployeeDetails } from '../employeeDetails';
 import { EmployeeService } from '../employee.service';
 import { Salutation } from '../constants';
-import { EmployeeDetails } from '../employeeDetails';
+
 
 import {
   trigger,
@@ -21,38 +22,49 @@ import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry 
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-	
-	employee: EmployeeDetails = new EmployeeDetails();
+		employeedetails: EmployeeDetails = new EmployeeDetails();
+  //employeedetails: any = {};
+  
 
   constructor(private employeeService: EmployeeService) { }
   
  
+  ngOnInit() {
+  }
   
+ 
 
   newEmployee(){
 	  
-	  var employeeDet  = {
-    name:  this.employee.firstName,
-    age:  "28",
-    phone:  123456789,
-    title:  "This is the third contact",
-    firstName: this.employee.firstName,
-    lastName:  this.employee.lastName,
-    middleName:this.employee.middleName,
-    email: "",
-    resume: "00121212101",
-	creationDate : new Date()
+	  var employee  = {
+    employeeId:this.employeedetails.employeeId,
+    title:  this.employeedetails.title,
+    firstName: this.employeedetails.firstName,
+    lastName:  this.employeedetails.lastName,
+    middleName:this.employeedetails.middleName,
+    age:  this.employeedetails.age,
+    phone:  this.employeedetails.phone,
+    email: this.employeedetails.email,
+    resume: this.employeedetails.resume,
+    alternatePhone: this.employeedetails.alternatePhone,
+    addressLine1: this.employeedetails.addressLine1,
+    addressLine2: this.employeedetails.addressLine2,
+    city: this.employeedetails.city,
+    state: this.employeedetails.state,
+    country: this.employeedetails.country,
+    pinCode: this.employeedetails.pinCode,
+    creationDate : new Date()
+    
 };
-	  
-	  alert('inside alert--- >' + employeeDet.firstName);
-	   this.employeeService.createEmployee(employeeDet)
+	  alert('inside alert--- >' +employee.firstName + employee.employeeId) ;
+	  this.employeeService.createEmployee(employee)
       .subscribe(data => console.log(data), error => console.log(error));
-    this.employee = new EmployeeDetails();
-	  
+  	  
   }
 
+
   salutation = Salutation;
-  employeeDetails: EmployeeDetails;
+ // employeeDetails: EmployeeDetails;
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -108,8 +120,6 @@ export class RegisterComponent implements OnInit {
     console.log(event);
   }
 
-  ngOnInit() {
-  }
 
 }
 
