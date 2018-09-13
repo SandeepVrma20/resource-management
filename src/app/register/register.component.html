@@ -1,8 +1,11 @@
 <mat-card class="example-card">
   <mat-card-title>Register</mat-card-title>
-  <!-- <mat-card-subtitle>Register</mat-card-subtitle> -->
   <mat-card-content>
-    <form class="example-form">
+    <form class="">
+      <mat-form-field class="">
+        <input matInput #postalCode placeholder="Employee Id." value="">
+      </mat-form-field>
+      <br />
       <mat-form-field>
         <mat-select placeholder="Title">
           <mat-option *ngFor="let value of salutation.value" [value]="value">
@@ -10,6 +13,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <input matInput placeholder="First Name"  required [(ngModel)]="employee.firstName" name="firstName">
       </mat-form-field>
@@ -19,15 +23,14 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Last Name"  required [(ngModel)]="employee.lastName" name="lastName">
       </mat-form-field>
+      <br />
       <mat-form-field>
         <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <!--
-      <input type="file" accept=".pdf" ng2FileSelect [uploader]="uploader"/>
-      -->
-      <mat-form-field class="example-full-width">
+      <br />
+      <mat-form-field class="">
         <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
           Please enter a valid email address
@@ -36,56 +39,44 @@
           Email is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="First name">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Last Name">
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
 
       <p>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="">
           <textarea matInput placeholder="Address"></textarea>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="">
           <textarea matInput placeholder="Address 2"></textarea>
         </mat-form-field>
       </p>
 
-      <table class="example-full-width" cellspacing="0">
+      <table class="" cellspacing="0">
         <tr>
           <td>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="">
               <input matInput placeholder="City">
             </mat-form-field>
           </td>
           <td>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="">
               <input matInput placeholder="State">
             </mat-form-field>
           </td>
+        </tr>
+        <tr>
           <td>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="">
               <input matInput placeholder="Country">
             </mat-form-field>
           </td>
           <td>
-            <mat-form-field class="example-full-width">
-              <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="94043">
+            <mat-form-field class="">
+              <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="">
               <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
             </mat-form-field>
           </td>
         </tr>
       </table>
-      <table class="example-full-width" cellspacing="0">
+      <table class="" cellspacing="0">
         <tr>
           <td>
             <mat-form-field class="">
@@ -94,6 +85,8 @@
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
           </td>
+        </tr>
+        <tr>
           <td>
             <mat-form-field class="">
               <span matPrefix>+91 &nbsp;</span>
@@ -103,7 +96,7 @@
           </td>
         </tr>
       </table>
-	 <input type="file" placeholder="Upload file">
+
     <div class="center">
       <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
         (onFileLeave)="fileLeave($event)">
