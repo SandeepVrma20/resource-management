@@ -1,54 +1,73 @@
 <mat-card class="example-card">
   <mat-card-title>Register</mat-card-title>
   <mat-card-content>
-    <form class="">
-      <mat-form-field class="">
-        <input matInput #postalCode placeholder="Employee Id." value="">
-      </mat-form-field>
-      <br />
-      <mat-form-field>
-        <mat-select placeholder="Title">
-          <mat-option *ngFor="let value of salutation.value" [value]="value">
-            {{value}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="First Name"  required [(ngModel)]="employee.firstName" name="firstName">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Middle Name"  [(ngModel)]="employee.middleName" name="middleName">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Last Name"  required [(ngModel)]="employee.lastName" name="lastName">
-      </mat-form-field>
-      <br />
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <br />
-      <mat-form-field class="">
-        <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Personal Details</mat-panel-title>
+        </mat-expansion-panel-header>
 
-      <p>
-        <mat-form-field class="">
-          <textarea matInput placeholder="Address"></textarea>
-        </mat-form-field>
-        <mat-form-field class="">
-          <textarea matInput placeholder="Address 2"></textarea>
-        </mat-form-field>
-      </p>
+        <form class="">
+          <mat-form-field class="">
+            <input matInput placeholder="Employee Id." value="">
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-select placeholder="Title">
+              <mat-option *ngFor="let value of salutation.value" [value]="value" required>
+                {{value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="">
+            <input matInput placeholder="First Name" value="" required [(ngModel)]="employee.firstName" name="firstName">
+          </mat-form-field>
+          <mat-form-field class="">
+            <input matInput placeholder="Middle Name" value="" [(ngModel)]="employee.middleName" name="middleName">
+          </mat-form-field>
+          <mat-form-field class="">
+            <input matInput placeholder="Last Name" value="" required [(ngModel)]="employee.lastName" name="lastName">
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br />
+          <mat-form-field class="">
+            <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" required>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field class="">
+            <textarea matInput placeholder="Address"></textarea>
+          </mat-form-field>
+          <mat-form-field class="">
+            <textarea matInput placeholder="Address 2"></textarea>
+          </mat-form-field>
 
+          <mat-form-field class="">
+            <input matInput placeholder="City">
+          </mat-form-field>
+          <mat-form-field class="">
+            <input matInput placeholder="State">
+          </mat-form-field>
+          <mat-form-field class="">
+            <input matInput placeholder="Country">
+          </mat-form-field>
+          <mat-form-field class="">
+            <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="">
+            <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+          </mat-form-field>
+
+<<<<<<< HEAD
       <table class="" cellspacing="0">
         <tr>
           <td>
@@ -97,11 +116,35 @@
         </tr>
       </table>
 
+=======
+          <mat-form-field class="">
+            <span matPrefix>+91 &nbsp;</span>
+            <input type="tel" matInput placeholder="Phone Number" required>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="">
+            <span matPrefix>+91 &nbsp;</span>
+            <input type="tel" matInput placeholder="Alternate Phone Number">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Upload Resume</mat-card-title>
+    <input type="file" >
+>>>>>>> 9e8f763ee93ab9ae99f50ffdee8acee423e398b1
     <div class="center">
       <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
         (onFileLeave)="fileLeave($event)">
-        <span>optional content (don't set headertext then)</span>
+        <span></span>
       </file-drop>
+      <br />
       <div class="upload-table">
         <table class="table">
 
@@ -118,4 +161,5 @@
    
 	 </form>
   </mat-card-content>
+  <button mat-raised-button color="primary">Submit</button>
 </mat-card>

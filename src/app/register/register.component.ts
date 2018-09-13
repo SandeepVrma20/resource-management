@@ -66,15 +66,15 @@ export class RegisterComponent implements OnInit {
   public dropped(event: UploadEvent) {
     this.files = event.files;
     for (const droppedFile of event.files) {
- 
+
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
- 
+
           // Here you can access the real file
           console.log(droppedFile.relativePath, file);
- 
+
           /**
           // You could upload it like this:
           const formData = new FormData()
@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
             // Sanitized logo returned from backend
           })
           **/
- 
+
         });
       } else {
         // It was a directory (empty directories are added, otherwise only files)
@@ -99,12 +99,12 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
- 
-  public fileOver(event){
+
+  public fileOver(event) {
     console.log(event);
   }
- 
-  public fileLeave(event){
+
+  public fileLeave(event) {
     console.log(event);
   }
 

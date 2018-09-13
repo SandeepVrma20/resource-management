@@ -1,16 +1,22 @@
 <mat-drawer-container class="main-container" autosize>
   <mat-drawer #drawer class="sidenav-container" mode="side" opened>
-    <mat-toolbar color="primary" class="">
-      <h1 class="">Register</h1>
-    </mat-toolbar>
-    <button mat-icon-button><mat-icon>menu</mat-icon></button>
+    <!--
+      <mat-toolbar color="primary" class="">
+        <h1 class="">Register</h1>
+      </mat-toolbar>
+    -->
     <mat-list>
+      <mat-list-item>
+        <button mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><a routerLink="/">Home</a></mat-list-item>
+      <mat-list-item><button mat-button routerLink="/">Home</button></mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><a routerLink="/register">Register</a></mat-list-item>
+      <mat-list-item><button mat-button routerLink="/register">Register</button></mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>List</mat-list-item>
+      <mat-list-item><button mat-button routerLink="">List</button></mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
   </mat-drawer>
