@@ -32,13 +32,14 @@
           </mat-form-field>
           <br />
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" required>
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" required name="dob" [(ngModel)]="employeedetails.dob">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <br />
           <mat-form-field class="">
-            <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" required>
+            <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" required
+              name="email" [(ngModel)]="employeedetails.email">
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               Please enter a valid email address
             </mat-error>
@@ -48,10 +49,10 @@
           </mat-form-field>
           <br />
           <mat-form-field class="">
-            <textarea matInput placeholder="Address"></textarea>
+            <textarea matInput placeholder="Address" name="addressLine1" [(ngModel)]="employeedetails.addressLine1"></textarea>
           </mat-form-field>
           <mat-form-field class="">
-            <textarea matInput placeholder="Address 2"></textarea>
+            <textarea matInput placeholder="Address 2" name="addressLine2" [(ngModel)]="employeedetails.addressLine2"></textarea>
           </mat-form-field>
 
           <mat-form-field class="">
