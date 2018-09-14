@@ -1,13 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Salutation } from './../constants';
 import { EmployeeDetails } from './../employeeDetails';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
@@ -22,7 +16,7 @@ export class RegisterComponent implements OnInit {
   constructor() { }
 
   salutation = Salutation;
-  employeeDetails: EmployeeDetails;
+  employeeDetails: EmployeeDetails = {};
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -35,6 +29,10 @@ export class RegisterComponent implements OnInit {
 
   public dropped(event: UploadEvent) {
     this.files = event.files;
+    if (event.files.length > 1) {
+      console.log('Multiple files selected');
+      return;
+    }
     for (const droppedFile of event.files) {
 
       // Is it a file?
@@ -44,17 +42,18 @@ export class RegisterComponent implements OnInit {
 
           // Here you can access the real file
           console.log(droppedFile.relativePath, file);
+          this.employeeDetails.resume = file;
 
           /**
           // You could upload it like this:
           const formData = new FormData()
           formData.append('logo', file, relativePath)
- 
+
           // Headers
           const headers = new HttpHeaders({
             'security-token': 'mytoken'
           })
- 
+
           this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
           .subscribe(data => {
             // Sanitized logo returned from backend
@@ -79,6 +78,11 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public onSubmit() {
+    console.log();
+    console.log(this.employeeDetails);
   }
 
 }

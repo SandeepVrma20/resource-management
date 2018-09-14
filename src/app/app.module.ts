@@ -52,6 +52,7 @@ import { RegisterComponent } from './register/register.component';
 import { ListComponent } from './list/list.component';
 
 import { FileDropModule } from 'ngx-file-drop';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
