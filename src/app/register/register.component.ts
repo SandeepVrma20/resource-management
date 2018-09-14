@@ -14,6 +14,8 @@ import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry 
 })
 export class RegisterComponent implements OnInit {
 
+  header = 'Register';
+
   constructor(private employeeService: EmployeeService) { }
 
   salutation = Salutation;
@@ -74,7 +76,9 @@ export class RegisterComponent implements OnInit {
 
   newEmployee() {
     alert('inside alert--- >' + this.employeeDetails.firstName + this.employeeDetails.employeeId);
-    this.employeeService.createEmployee(this.employeeDetails)
+    const formData = new FormData();
+    formData.append('fileData', this.employeeDetails.resume);
+    this.employeeService.createEmployee(this.employeeDetails, formData)
       .subscribe(data => console.log(data), error => console.log(error));
   }
 

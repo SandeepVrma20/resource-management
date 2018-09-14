@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EmployeeDetails } from './employeeDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,10 @@ export class EmployeeService {
     return this.httpClient.get('${this.baseUrl}/${id}');
   }
 
-  createEmployee(employees: Object): Observable<Object> {
-    alert('inside services' + employees + 'url :- ' + '${this.baseUrl}' + '/insert');
-    return this.httpClient.post('${this.baseUrl}' + '/insert', employees);
+  createEmployee(employee: EmployeeDetails, fileData: FormData): Observable<Object> {
+    const abc = { 'empDetails': employee, 'fileData': fileData };
+    alert('inside services' + employee + 'url :- ' + '${this.baseUrl}' + '/insert');
+    return this.httpClient.post('${this.baseUrl}' + '/insert', abc);
   }
 
   updateEmployee(id: number, value: any): Observable<Object> {

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ListComponent } from './list/list.component'
 
 @Component({
   selector: 'app-root',
@@ -8,4 +7,5 @@ import { ListComponent } from './list/list.component'
 })
 export class AppComponent {
   title = 'resource-management';
+  header = 'Login';
 }

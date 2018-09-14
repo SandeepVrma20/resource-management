@@ -15,5 +15,5 @@ export interface EmployeeDetails {
   state?: string;
   country?: string;
   pinCode?: number;
-  resume?: object;
+  resume?: File;
 }
