@@ -91,6 +91,7 @@ export class RegisterComponent implements OnInit {
 
   public onSubmit() {
     console.log();
+    this.newEmployee();
     console.log(this.employeeDetails);
   }
 
