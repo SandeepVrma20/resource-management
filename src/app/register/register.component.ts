@@ -26,6 +26,8 @@ export class RegisterComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
+  date = new FormControl(new Date());
+
   public files: UploadFile[] = [];
 
   public dropped(event: UploadEvent) {
@@ -71,28 +73,8 @@ export class RegisterComponent implements OnInit {
   }
 
   newEmployee() {
-
-    var employee = {
-      employeeId: this.employeeDetails.employeeId,
-      title: this.employeeDetails.title,
-      firstName: this.employeeDetails.firstName,
-      lastName: this.employeeDetails.lastName,
-      middleName: this.employeeDetails.middleName,
-      age: this.employeeDetails.age,
-      phone: this.employeeDetails.phone,
-      email: this.employeeDetails.email,
-      resume: this.employeeDetails.resume,
-      alternatePhone: this.employeeDetails.alternatePhone,
-      addressLine1: this.employeeDetails.addressLine1,
-      addressLine2: this.employeeDetails.addressLine2,
-      city: this.employeeDetails.city,
-      state: this.employeeDetails.state,
-      country: this.employeeDetails.country,
-      pinCode: this.employeeDetails.pinCode,
-      creationDate: new Date()
-    };
-    alert('inside alert--- >' + employee.firstName + employee.employeeId);
-    this.employeeService.createEmployee(employee)
+    alert('inside alert--- >' + this.employeeDetails.firstName + this.employeeDetails.employeeId);
+    this.employeeService.createEmployee(this.employeeDetails)
       .subscribe(data => console.log(data), error => console.log(error));
   }
 
