@@ -1,4 +1,25 @@
 <mat-card class="">
-  <mat-card-title>Home</mat-card-title>
-  <mat-card-content></mat-card-content>
+  <!--
+    <mat-card-title>Home</mat-card-title>
+  -->
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort class="">
+        <ng-container matColumnDef="mainSkill">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Main Skill </th>
+          <td mat-cell *matCellDef="let element"> {{element.mainSkill}} </td>
+        </ng-container>
+        <ng-container matColumnDef="count">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Count </th>
+          <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnHeadersOrder"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnHeadersOrder;" routerLink="/listdetails" routerLinkActive="active"></tr>
+      </table>
+      <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+    </div>
+  </mat-card-content>
 </mat-card>

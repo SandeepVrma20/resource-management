@@ -11,6 +11,7 @@ export class ListComponent implements OnInit {
   header = 'List';
 
   displayedColumns: string[] = ['employeeId', 'firstName', 'lastName', 'email', 'phone'];
+
   dataSource = ELEMENT_DATA;
 
   constructor() { }

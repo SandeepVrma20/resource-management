@@ -50,6 +50,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ListComponent } from './list/list.component';
+import { ListDetailsComponent } from './list-details/list-details.component';
+import { RegisterRequirementComponent } from './register-requirement/register-requirement.component';
 
 import { FileDropModule } from 'ngx-file-drop';
 import 'hammerjs';
@@ -59,7 +61,9 @@ import 'hammerjs';
     AppComponent,
     HomeComponent,
     RegisterComponent,
-    ListComponent
+    ListComponent,
+    ListDetailsComponent,
+    RegisterRequirementComponent
   ],
   imports: [
     BrowserModule,

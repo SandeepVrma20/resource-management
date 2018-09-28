@@ -1,22 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
-
+import { Routes, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,41 +8,67 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
 
-  header = 'Home';
+  columnHeadersOrder: string[] = ['mainSkill', 'count'];
+
+  dataList = [
+    {
+      'rgsId': 2243367,
+      'reqId': 5423932,
+      'account': 'ABN Amro',
+      'positionOwner': 'Azra',
+      'openDate': '25-10-2017',
+      'position': 'Database Admin',
+      'skillCategory': 'Teradata',
+      'mainSkill': 'Teradata',
+      'additionalSkill': 'Unix',
+      'domain': 'Connectivity & Technology',
+      'projectName': 'EDI',
+      'expBand': '8-10 yrs',
+      'count': '2'
+    },
+    {
+      'rgsId': 2243368,
+      'reqId': 5423931,
+      'account': 'ABN Amro',
+      'positionOwner': 'Hemant',
+      'openDate': '24-10-2017',
+      'position': 'Java Developer',
+      'skillCategory': 'Java',
+      'mainSkill': 'Java',
+      'additionalSkill': 'Spring',
+      'domain': 'Risk',
+      'projectName': 'MPS',
+      'expBand': '1-2 yrs',
+      'count': '5'
+    }
+  ];
+
+  dataSource = new MatTableDataSource(this.dataList);
+
+  resultsLength = this.dataList.length;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor() {
-    // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
   }
 
   ngOnInit() {
-    // this.dataSource.paginator = this.paginator;
-    //  this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
+  selectRow(mainSkill: string) {
+    // this.router.navigate();
+  }
 
 }

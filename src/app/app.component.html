@@ -5,20 +5,44 @@
         <h1 class="">Register</h1>
       </mat-toolbar>
     -->
-    <mat-list>
+    <mat-nav-list>
       <mat-list-item>
         <button mat-icon-button>
           <mat-icon>menu</mat-icon>
         </button>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><button mat-button routerLink="/">Home</button></mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button>
+          <mat-icon>dashboard</mat-icon>
+        </button>
+        <a href="/">Dashboard</a>
+        <!--<a matLine href="/">Dashboard</a>-->
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><button mat-button routerLink="/register">Register</button></mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button>
+          <mat-icon>border_color</mat-icon>
+          <!--<mat-icon>create</mat-icon>-->
+        </button>
+        <a href="/newreq">New Requirement</a>
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item><button mat-button routerLink="/list">List</button></mat-list-item>
+      <mat-list-item>
+        <button mat-icon-button>
+          <mat-icon>add_box</mat-icon>
+        </button>
+        <a href="/register">Register</a>
+      </mat-list-item>
       <mat-divider></mat-divider>
-    </mat-list>
+      <mat-list-item>
+        <button mat-icon-button>
+          <mat-icon>list</mat-icon>
+        </button>
+        <a href="/list">List</a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
   </mat-drawer>
   <mat-toolbar color="primary" class="toolbar-spacer">
     <h1 class=""> Resource Management </h1>

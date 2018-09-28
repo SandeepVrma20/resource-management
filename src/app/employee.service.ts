@@ -9,6 +9,7 @@ import { EmployeeDetails } from './employeeDetails';
 export class EmployeeService {
 
   private baseUrl = 'http://localhost:8080/api/employees';
+  private requirementUrl = 'http://localhost:8080/api/requierments';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -32,6 +33,10 @@ export class EmployeeService {
 
   getEmployeesList(): Observable<any> {
     return this.httpClient.get('${this.baseUrl}');
+  }
+
+  getRequirementList(): Observable<any> {
+    return this.httpClient.get('${this.requirementUrl}');
   }
 
 }
