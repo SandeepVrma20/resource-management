@@ -1,0 +1,67 @@
+<mat-card class="">
+  <!--
+    <mat-card-title>Home</mat-card-title>
+  -->
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort class="">
+        <ng-container matColumnDef="rgsId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Rgs Id. </th>
+          <td mat-cell *matCellDef="let element"> {{element.rgsId}} </td>
+        </ng-container>
+        <ng-container matColumnDef="reqId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Requirement Id. </th>
+          <td mat-cell *matCellDef="let element"> {{element.reqId}} </td>
+        </ng-container>
+        <ng-container matColumnDef="account">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Account Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.account}} </td>
+        </ng-container>
+        <ng-container matColumnDef="positionOwner">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Owner </th>
+          <td mat-cell *matCellDef="let element"> {{element.positionOwner}} </td>
+        </ng-container>
+        <ng-container matColumnDef="openDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Open Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.openDate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+        <ng-container matColumnDef="skillCategory">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Skill Category </th>
+          <td mat-cell *matCellDef="let element"> {{element.skillCategory}} </td>
+        </ng-container>
+        <ng-container matColumnDef="mainSkill">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Main Skill </th>
+          <td mat-cell *matCellDef="let element"> {{element.mainSkill}} </td>
+        </ng-container>
+        <ng-container matColumnDef="additionalSkill">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Additional Skills </th>
+          <td mat-cell *matCellDef="let element"> {{element.additionalSkill}} </td>
+        </ng-container>
+        <ng-container matColumnDef="domain">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Domain </th>
+          <td mat-cell *matCellDef="let element"> {{element.domain}} </td>
+        </ng-container>
+        <ng-container matColumnDef="projectName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="expBand">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Experience </th>
+          <td mat-cell *matCellDef="let element"> {{element.expBand}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnHeadersOrder"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnHeadersOrder;"></tr>
+      </table>
+      <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+    </div>
+    <br />
+    <button mat-button routerLink="/">Back</button>
+  </mat-card-content>
+</mat-card>
