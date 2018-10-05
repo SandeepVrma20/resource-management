@@ -1,3 +1,180 @@
-<p>
-  register-requirement works!
-</p>
+<form class="" [formGroup]="registerForm" (ngSubmit)="save(registerForm.value, registerForm.valid)">
+  <mat-card>
+    <mat-card-title>New Requirement</mat-card-title>
+    <mat-card-content>
+      <!--
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder">
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+      -->
+      <table class="table_width">
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>EUC Reference Id.</mat-label>
+              <input matInput formControlName="eucRefId">
+              <mat-hint>E.g.: A-1008</mat-hint>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>RGS Id.</mat-label>
+              <input matInput formControlName="rgsId" pattern="[0-9]*" required>
+              <mat-error *ngIf="registerForm.controls.rgsId.hasError('required')">Please provide RGS Id.</mat-error>
+              <mat-error *ngIf="registerForm.controls.rgsId.hasError('pattern')">Please provide numeric RGS Id.</mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Requirement Id.</mat-label>
+              <input matInput formControlName="reqId" required>
+              <mat-error *ngIf="registerForm.controls.reqId.hasError('required')">Please provide Requirement Id.</mat-error>
+              <mat-error *ngIf="registerForm.controls.rgsId.hasError('pattern')">Please provide numeric Requirement Id.</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Account</mat-label>
+              <input matInput formControlName="account">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Position Owner</mat-label>
+              <input matInput formControlName="positionOwner" required>
+              <mat-error *ngIf="registerForm.controls.positionOwner.hasError('required')">Please provide the name of
+                the owner for this positin</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Site</mat-label>
+              <input matInput formControlName="site">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Open Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="openDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker></mat-datepicker>
+              <mat-error *ngIf="registerForm.controls.openDate.hasError('required')">Please provide open date</mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Start Date</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="startDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker2></mat-datepicker>
+              <mat-error *ngIf="registerForm.controls.openDate.hasError('required')">Please provide start date</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Location</mat-label>
+              <input matInput formControlName="location">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Position</mat-label>
+              <input matInput formControlName="position">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Skill Category</mat-label>
+              <input matInput formControlName="skillCategory" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Main Skill</mat-label>
+              <input matInput formControlName="mainSkill" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Additional Skills</mat-label>
+              <input matInput formControlName="additionalSkill">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Domain</mat-label>
+              <input matInput formControlName="domain">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Project Name</mat-label>
+              <input matInput formControlName="projectName">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Requirement Type</mat-label>
+              <input matInput formControlName="reqType">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Requirement Class</mat-label>
+              <input matInput formControlName="reqClass">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Contractor</mat-label>
+              <mat-select formControlName="contractor">
+                <mat-option *ngFor="let value of yesNoList.value" [value]="value">
+                  {{value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Trainee</mat-label>
+              <mat-select formControlName="trainee">
+                <mat-option *ngFor="let value of yesNoList.value" [value]="value">
+                  {{value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Revenue Within Quarter</mat-label>
+              <mat-select formControlName="revenueWithinQtr">
+                <mat-option *ngFor="let value of yesNoList.value" [value]="value">
+                  {{value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <br />
+      <button mat-raised-button type="reset" color="primary">Reset</button>
+      <button mat-raised-button type="submit" color="primary">Submit</button>
+    </mat-card-content>
+  </mat-card>
+</form>
