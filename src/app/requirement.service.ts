@@ -28,17 +28,17 @@ export class RequirementService {
   }
 
   getGrpRequirement(): Observable<any> {
-    alert('inside services'  + 'url :- ' + this.baseUrl+ '/grouped');
+    //alert('inside services'  + 'url :- ' + this.baseUrl+ '/grouped');
     return this.httpClient.get(this.baseUrl + '/grouped', { responseType: 'text' });
   }
 
-  getRequirementBySkill(requirementDetails: RequirementDetails): Observable<any> {
-    alert('inside services' + requirementDetails.eucRefId + 'url :- ' + this.baseUrl+ '/retrieve');
-    return this.httpClient.put(this.baseUrl +'/retrieve', { responseType: 'text' });
+  getRequirementBySkill(requirementDetails:String): Observable<any> {
+    alert('inside services' + requirementDetails + 'url :- ' + this.baseUrl+ '/retrieve/skillCategory/'+requirementDetails);
+    return this.httpClient.get(this.baseUrl +'/retrieve/skillCategory/'+requirementDetails, { responseType: 'text' });
   }
 
   getRequirementList(): Observable<any> {
-    return this.httpClient.get('${this.baseUrl}');
+    return this.httpClient.get(this.baseUrl , { responseType: 'text' });
   }
 
 }

@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'newreq',
     component: RegisterRequirementComponent
+  },
+  {
+    path: 'listdetails/:mainSkill',
+    component: ListDetailsComponent
   }
 ];
 
