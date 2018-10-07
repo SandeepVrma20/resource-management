@@ -13,9 +13,7 @@ export class RequirementService {
   constructor(private httpClient: HttpClient) { }
 
   createRequirement(requirementDetails: RequirementDetails): Observable<Object> {
-    //const abc = { 'empDetails': requirementDetails, 'fileData': fileData };
-    alert('requirementUrl -->' + this.baseUrl + this.baseUrl);
-    alert('inside services' + requirementDetails.eucRefId + 'url :- ' + this.baseUrl+ '/insert');
+    // alert('inside services' + requirementDetails.eucRefId + 'url :- ' + this.baseUrl+ '/insert');
     return this.httpClient.post(this.baseUrl + '/insert', requirementDetails);
   }
 
@@ -28,12 +26,10 @@ export class RequirementService {
   }
 
   getGrpRequirement(): Observable<any> {
-    //alert('inside services'  + 'url :- ' + this.baseUrl+ '/grouped');
     return this.httpClient.get(this.baseUrl + '/grouped', { responseType: 'text' });
   }
 
   getRequirementBySkill(requirementDetails:String): Observable<any> {
-    alert('inside services' + requirementDetails + 'url :- ' + this.baseUrl+ '/retrieve/skillCategory/'+requirementDetails);
     return this.httpClient.get(this.baseUrl +'/retrieve/skillCategory/'+requirementDetails, { responseType: 'text' });
   }
 
