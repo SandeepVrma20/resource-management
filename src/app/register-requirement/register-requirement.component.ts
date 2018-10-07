@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormGroupDirective, NgForm, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RequirementDetails } from '../requirementDetails';
 import { YesNoList } from '../constants';
+import { RequirementService } from '../requirement.service';
 
 @Component({
   selector: 'app-register-requirement',
@@ -16,11 +17,13 @@ export class RegisterRequirementComponent implements OnInit {
 
   public yesNoList = YesNoList;
 
+  response :any;
+
   public reqPageData: RequirementDetails = new RequirementDetails();
 
   date = new FormControl(new Date());
 
-  constructor(private _fb: FormBuilder) { } // form builder simplify form initialization
+  constructor(private _fb: FormBuilder, private requirementService : RequirementService) { } // form builder simplify form initialization
 
   ngOnInit() {
     // we will initialize our form model here
@@ -65,8 +68,14 @@ export class RegisterRequirementComponent implements OnInit {
   }
 
   save(model: RequirementDetails, isValid: boolean) {
+    alert('inside');
     this.submitted = true; // set form submit to true
-
+    this.requirementService.createRequirement(model)
+    .subscribe((response) => {
+    this.response=response;
+    alert("this.messages--->" +response);
+    })
+    
     // check if model is valid
     // if valid, call API to save requirement
     console.log(model, isValid);

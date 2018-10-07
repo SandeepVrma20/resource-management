@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
+import { RequirementService } from '../requirement.service';
+import { RequirementDetails } from '../requirementDetails';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,9 @@ import { Routes, RouterModule } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   columnHeadersOrder: string[] = ['mainSkill', 'count'];
-
-  dataList = [
+  // dataList:  RequirementDetails[];
+  
+dataList = [
     {
       'rgsId': 2243367,
       'reqId': 5423932,
@@ -51,10 +54,24 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private requirementService: RequirementService) {
+    
+  }
+  fillDetails(dataList){
+   // this.dataSource = new MatTableDataSource(this.dataList);
+    //this.resultsLength = this.dataList.length;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit() {
+    this.requirementService.getGrpRequirement()
+    .subscribe(dataList=> {
+      this.dataList  =  dataList;
+      this.fillDetails(this.dataList);
+      console.log(this.dataList);
+    }
+    )
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

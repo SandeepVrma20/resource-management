@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { RequirementService } from '../requirement.service';
+import { RequirementDetails } from '../requirementDetails';
 
 @Component({
   selector: 'app-list-details',
@@ -7,9 +9,12 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./list-details.component.scss']
 })
 export class ListDetailsComponent implements OnInit {
+  
 
   columnHeadersOrder: string[] = ['rgsId', 'reqId', 'account', 'positionOwner', 'openDate', 'position', 'skillCategory',
     'mainSkill', 'additionalSkill', 'domain', 'projectName', 'expBand'];
+
+    response :RequirementDetails[];
 
   dataList = [
     {
@@ -85,19 +90,26 @@ export class ListDetailsComponent implements OnInit {
   ];
 
   dataSource = new MatTableDataSource(this.dataList);
-
+ //dataSource = new MatTableDataSource(this.response);
   resultsLength = this.dataList.length;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private requiermentService:RequirementService) {
+    this.requiermentService.getRequirementList()
+    .subscribe((response)=>{
+     this.response =response;
+
+    })
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
+ 
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
