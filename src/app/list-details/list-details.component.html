@@ -59,7 +59,7 @@
         <tr mat-header-row *matHeaderRowDef="columnHeadersOrder"></tr>
         <tr mat-row *matRowDef="let row; columns: columnHeadersOrder;"></tr>
       </table>
-      <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+      <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
     </div>
     <br />
     <button mat-button routerLink="/">

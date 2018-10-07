@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormBuilder, FormGroupDirective, NgForm, Valida
 import { RequirementDetails } from '../requirementDetails';
 import { YesNoList } from '../constants';
 import { RequirementService } from '../requirement.service';
+import { parse } from 'querystring';
+import { Routes, RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-requirement',
@@ -17,13 +19,11 @@ export class RegisterRequirementComponent implements OnInit {
 
   public yesNoList = YesNoList;
 
-  response :any;
-
   public reqPageData: RequirementDetails = new RequirementDetails();
 
   date = new FormControl(new Date());
 
-  constructor(private _fb: FormBuilder, private requirementService : RequirementService) { } // form builder simplify form initialization
+  constructor(private _fb: FormBuilder, private requirementService : RequirementService , private router: Router) { } // form builder simplify form initialization
 
   ngOnInit() {
     // we will initialize our form model here
@@ -63,20 +63,25 @@ export class RegisterRequirementComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    alert('Thanks for submitting! Data: ' + JSON.stringify(this.reqPageData.positionOwner));
+  fillDetails(responseMsg){
+    alert(responseMsg.response);
+   //alert(responseMsg.reqId);
+   //alert(responseMsg.flag);
+   if(responseMsg.flag==true){
+    this.router.navigate(['/listdetails'])
+   }
+   
+   
   }
 
   save(model: RequirementDetails, isValid: boolean) {
-    alert('inside');
+    
     this.submitted = true; // set form submit to true
     this.requirementService.createRequirement(model)
-    .subscribe((response) => {
-    this.response=response;
-    alert("this.messages--->" +response);
+    .subscribe(response=> {  
+      this.fillDetails(response);
     })
-    
-    // check if model is valid
+   // check if model is valid
     // if valid, call API to save requirement
     console.log(model, isValid);
   }
