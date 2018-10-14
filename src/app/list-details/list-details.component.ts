@@ -4,6 +4,7 @@ import { RequirementService } from '../requirement.service';
 import { RequirementDetails } from '../requirementDetails';
 import { ActivatedRoute } from '@angular/router';
 import { ParsedVariable } from '@angular/compiler';
+import { ExcelService } from '../excel.service';
 
 @Component({
   selector: 'app-list-details',
@@ -15,14 +16,18 @@ export class ListDetailsComponent implements OnInit {
   columnHeadersOrder: string[] = ['rgsId', 'reqId', 'account', 'positionOwner', 'openDate', 'position', 'skillCategory',
     'mainSkill', 'additionalSkill', 'domain', 'projectName', 'expBand'];
 
-    dataList:  RequirementDetails[];
+    dataList:  any;
+    data :any;
     resultsLength: any;
     dataSource = new MatTableDataSource(this.dataList);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private requiermentService:RequirementService , private route :ActivatedRoute) {
+  constructor(private requiermentService:RequirementService , 
+    private route :ActivatedRoute ,
+    private excelService:ExcelService
+    ) {
     
   }
 
@@ -38,7 +43,8 @@ export class ListDetailsComponent implements OnInit {
     }else{
       this.requiermentService.getRequirementBySkill(parameter)
       .subscribe(dataList=> {     
-        this.dataList  =  dataList;
+        //this.dataList  =  dataList;
+        this.dataList  =  JSON.parse(dataList);
         this.fillDetails(JSON.parse(dataList));     
       }
      )
@@ -59,5 +65,10 @@ export class ListDetailsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  downloadToExcel():void {
+   this.data =JSON.parse(this.dataList);
+   this.excelService.exportAsExcelFile(this.data, 'RequirementLists');
+ }
 
 }
