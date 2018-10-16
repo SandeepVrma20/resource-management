@@ -55,6 +55,7 @@ import { RegisterRequirementComponent } from './register-requirement/register-re
 
 import { FileDropModule } from 'ngx-file-drop';
 import 'hammerjs';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import 'hammerjs';
     RegisterComponent,
     ListComponent,
     ListDetailsComponent,
-    RegisterRequirementComponent
+    RegisterRequirementComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
