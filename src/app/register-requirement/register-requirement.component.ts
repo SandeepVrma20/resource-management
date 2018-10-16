@@ -23,7 +23,11 @@ export class RegisterRequirementComponent implements OnInit {
 
   date = new FormControl(new Date());
 
-  constructor(private _fb: FormBuilder, private requirementService : RequirementService , private router: Router) { } // form builder simplify form initialization
+  constructor(private _fb: FormBuilder,
+    private requirementService: RequirementService,
+    private router: Router) {
+
+  } // form builder simplify form initialization
 
   ngOnInit() {
     // we will initialize our form model here
@@ -63,25 +67,22 @@ export class RegisterRequirementComponent implements OnInit {
     });
   }
 
-  fillDetails(responseMsg){
+  fillDetails(responseMsg) {
     alert(responseMsg.response);
-   //alert(responseMsg.reqId);
-   //alert(responseMsg.flag);
-   if(responseMsg.flag==true){
-    this.router.navigate(['/listdetails'])
-   }
-   
-   
+    // alert(responseMsg.reqId);
+    // alert(responseMsg.flag);
+    if (responseMsg.flag === true) {
+      this.router.navigate(['/listdetails']);
+    }
   }
 
   save(model: RequirementDetails, isValid: boolean) {
-    
     this.submitted = true; // set form submit to true
     this.requirementService.createRequirement(model)
-    .subscribe(response=> {  
-      this.fillDetails(response);
-    })
-   // check if model is valid
+      .subscribe(response => {
+        this.fillDetails(response);
+      });
+    // check if model is valid
     // if valid, call API to save requirement
     console.log(model, isValid);
   }

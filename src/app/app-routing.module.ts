@@ -28,6 +28,10 @@ const routes: Routes = [
     component: RegisterRequirementComponent
   },
   {
+    path: 'editreq',
+    component: RegisterRequirementComponent
+  },
+  {
     path: 'listdetails/:mainSkill',
     component: ListDetailsComponent
   }
