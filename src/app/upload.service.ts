@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UploadService {
- 
+
   constructor(private http: HttpClient) { }
 
   // file from event.target.files[0]
