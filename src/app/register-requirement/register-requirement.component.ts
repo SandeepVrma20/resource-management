@@ -42,7 +42,7 @@ export class RegisterRequirementComponent implements OnInit {
     }else{
 // we will initialize our form model here
 this.registerForm = this._fb.group({
-  isUpdate: [false],
+ 
   id: [''],
   eucRefId: [''],
   rgsId: ['', [<any>Validators.required, <any>Validators.pattern('[0-9]*')]],
@@ -85,7 +85,7 @@ fillFormData(datalist){
 
    // we will initialize our form model here
    this.registerForm = this._fb.group({
-    isUpdate:[true],
+   
     id:[datalist.id] ,
     eucRefId: [datalist.eucRefId],
     rgsId:  [datalist.rgsId, [<any>Validators.required, <any>Validators.pattern('[0-9]*')]],
