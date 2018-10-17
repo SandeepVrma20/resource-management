@@ -1,6 +1,6 @@
 table {
-    width: 100%;
-}
+    width: auto;
+ }
 
 .mat-form-field {
     font-size: 20px;
@@ -15,6 +15,12 @@ table {
     cursor: pointer;
     margin-right: 250px;
     font-size:25px;
+    color:black;
+  }
+
+  .button-style-update{
+    cursor: pointer;
+    font-size:20px;
     color:black;
   }
   

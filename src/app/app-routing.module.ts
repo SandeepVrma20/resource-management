@@ -34,7 +34,7 @@ const routes: Routes = [
     component: RegisterRequirementComponent
   },
   {
-    path: 'editreq',
+    path: 'editreq/:reqId',
     component: RegisterRequirementComponent
   },
   {

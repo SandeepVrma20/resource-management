@@ -1,5 +1,6 @@
 export class RequirementDetails {
-
+    
+    public isUpdate? : boolean; 
     public id?: string;
     public eucRefId?: string;
     public rgsId?: string;
@@ -34,6 +35,7 @@ export class RequirementDetails {
     public remarks?: string;
 
     constructor(
+        isUpdate ? : boolean,
         id?: string,
         eucRefId?: string,
         rgsId?: string,

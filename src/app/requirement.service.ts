@@ -17,8 +17,8 @@ export class RequirementService {
     return this.httpClient.post(this.baseUrl + '/insert', requirementDetails);
   }
 
-  updateRequirement(id: number, value: any): Observable<Object> {
-    return this.httpClient.put('${this.baseUrl}/${id}', value);
+  updateRequirement(requirementDetails: RequirementDetails): Observable<Object> {
+    return this.httpClient.post(this.baseUrl + '/update', requirementDetails);
   }
 
   deleteRequirement(id: number): Observable<any> {
@@ -35,6 +35,10 @@ export class RequirementService {
 
   getRequirementList(): Observable<any> {
     return this.httpClient.get(this.baseUrl , { responseType: 'text' });
+  }
+
+  getRequirementListById(id: String): Observable<any> {
+    return this.httpClient.get(this.baseUrl  +'/id/'+id, { responseType: 'text' });
   }
 
 }

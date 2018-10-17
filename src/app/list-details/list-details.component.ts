@@ -14,7 +14,7 @@ import { ExcelService } from '../excel.service';
 export class ListDetailsComponent implements OnInit {
 
   columnHeadersOrder: string[] = ['rgsId', 'reqId', 'account', 'positionOwner', 'openDate', 'position', 'skillCategory',
-    'mainSkill', 'additionalSkill', 'domain', 'projectName', 'expBand'];
+    'mainSkill', 'additionalSkill', 'domain', 'projectName', 'expBand','status','action'];
 
   dataList: any;
   data: any;
@@ -44,8 +44,8 @@ export class ListDetailsComponent implements OnInit {
     } else {
       this.requiermentService.getRequirementBySkill(parameter)
         .subscribe(dataList => {
-          // this.dataList  =  dataList;
-          this.dataList = JSON.parse(dataList);
+           this.dataList  =  dataList;
+          //this.dataList = JSON.parse(dataList);
           this.fillDetails(JSON.parse(dataList));
         }
         );
@@ -74,6 +74,10 @@ export class ListDetailsComponent implements OnInit {
 
   getDetails(rowData) {
     this.router.navigate(['/editreq', rowData]);
+  }
+
+  updateReq(rowData){
+    this.router.navigate(['/editreq', rowData.reqId]);
   }
 
 }
