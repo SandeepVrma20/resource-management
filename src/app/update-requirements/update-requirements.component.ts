@@ -7,16 +7,17 @@ import { parse } from 'querystring';
 import { Routes, RouterModule, Router ,ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-register-requirement',
-  templateUrl: './register-requirement.component.html',
-  styleUrls: ['./register-requirement.component.scss']
+  selector: 'app-update-requirements',
+  templateUrl: './update-requirements.component.html',
+  styleUrls: ['./update-requirements.component.scss']
 })
-export class RegisterRequirementComponent implements OnInit {
+export class UpdateRequirementsComponent implements OnInit {
+  
 
   public registerForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   public events: any[] = []; // use later to display form changes
-  dataList: any;
+  dataList: RequirementDetails;
   public yesNoList = YesNoList;
 
   public reqPageData: RequirementDetails = new RequirementDetails();
@@ -39,45 +40,8 @@ export class RegisterRequirementComponent implements OnInit {
         this.fillFormData(JSON.parse(dataList));
         }
      );
-    }else{
-// we will initialize our form model here
-this.registerForm = this._fb.group({
- 
-  id: [''],
-  eucRefId: [''],
-  rgsId: ['', [<any>Validators.required, <any>Validators.pattern('[0-9]*')]],
-  reqId: ['', [<any>Validators.required, <any>Validators.pattern('[0-9]*')]],
-  account: [''],
-  positionOwner: ['', [<any>Validators.required]],
-  openDate: [new Date(), [<any>Validators.required]],
-  site: [''],
-  location: [''],
-  position: [''],
-  skillCategory: ['', [<any>Validators.required]],
-  mainSkill: ['', [<any>Validators.required]],
-  additionalSkill: [''],
-  domain: [''],
-  projectName: [''],
-  expBand: [''],
-  startDate: [new Date(), [<any>Validators.required]],
-  reqType: [''],
-  reqClass: [''],
-  contractor: [''],
-  trainee: [''],
-  revenueWithinQtr: [''],
-  status: ['', [<any>Validators.required]],
-  employeeId: [],
-  resourceName: [],
-  closedDate: [],
-  onboardDate: [],
-  won: [],
-  allocationDate: [],
-  through: [],
-  closedBy: [],
-  remarks: []
-});
     }
- }
+  }
 
 fillFormData(datalist){
 
@@ -117,24 +81,28 @@ fillFormData(datalist){
     closedBy: [datalist.closedBy],
     remarks: [datalist.remarks]
   });
+
+ // this.registerForm.controls['reqId'].disable();
+  //this.registerForm.controls['rgsId'].disable();
 }
 
 
   fillDetails(responseMsg) {
     alert(responseMsg.response);
-     if (responseMsg.flag === true) {
+    if (responseMsg.flag === true) {
       this.router.navigate(['/listdetails']);
     }
   }
 
-  save(model: RequirementDetails) {
+  update(model: RequirementDetails, isValid: boolean) {
    this.submitted = true; // set form submit to true
-    this.requirementService.createRequirement(model)
+    this.requirementService.updateRequirement(model)
       .subscribe(response => {
         this.fillDetails(response);
       });
     // check if model is valid
     // if valid, call API to save requirement
-    console.log(model);
+    console.log(model, isValid);
   }
+
 }

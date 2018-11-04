@@ -1,4 +1,4 @@
-<form class="" [formGroup]="registerForm" (ngSubmit)="save(registerForm.value, registerForm.valid)">
+<form class="" [formGroup]="registerForm" (ngSubmit)="save(registerForm.value)">
   <mat-card>
     <mat-card-title>New Requirement</mat-card-title>
     <mat-card-content>
@@ -201,7 +201,6 @@
       <br />
       <button mat-raised-button type="reset" color="primary">Reset</button>
       <button mat-raised-button type="submit" color="primary">Submit</button>
-      <button mat-raised-button type="submit" color="primary">Update</button>
     </mat-card-content>
   </mat-card>
 </form>

@@ -27,6 +27,7 @@
         <a href="/listdetails">Requirement List</a>
       </mat-list-item>
       <mat-divider></mat-divider>
+    
       <mat-list-item>
         <button mat-icon-button routerLink="/register">
           <mat-icon>add_box</mat-icon>
@@ -39,8 +40,8 @@
           <mat-icon>list</mat-icon>
         </button>
         <a href="/list">List</a>
-        <!--<a *ngIf="showList" href="/list">List</a>-->
       </mat-list-item>
+    
       <mat-divider></mat-divider>
     </mat-nav-list>
     <!--
@@ -54,8 +55,10 @@
       </mat-toolbar>
     -->
   </mat-drawer>
-  <mat-toolbar color="primary" class="toolbar-spacer">
+  <mat-toolbar color="primary">
     <h1 class=""> Resource Management </h1>
+    <span class="toolbar-spacer"></span>
+    <a href="/login">Login</a>
   </mat-toolbar>
   <div id="content">
     <router-outlet></router-outlet>

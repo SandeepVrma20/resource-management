@@ -6,6 +6,7 @@ import { ListComponent } from './list/list.component';
 import { ListDetailsComponent } from './list-details/list-details.component';
 import { RegisterRequirementComponent } from './register-requirement/register-requirement.component';
 import { LoginComponent } from './login/login.component';
+import { UpdateRequirementsComponent } from './update-requirements/update-requirements.component';
 
 const routes: Routes = [
   
@@ -35,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'editreq/:reqId',
-    component: RegisterRequirementComponent
+    component: UpdateRequirementsComponent
   },
   {
     path: 'listdetails/:mainSkill',

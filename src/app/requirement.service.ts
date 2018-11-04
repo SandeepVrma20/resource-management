@@ -18,7 +18,7 @@ export class RequirementService {
   }
 
   updateRequirement(requirementDetails: RequirementDetails): Observable<Object> {
-    return this.httpClient.post(this.baseUrl + '/update', requirementDetails);
+    return this.httpClient.put(this.baseUrl + '/update' , requirementDetails);
   }
 
   deleteRequirement(id: number): Observable<any> {
