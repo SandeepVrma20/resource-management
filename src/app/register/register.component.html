@@ -1,4 +1,92 @@
-<form class="">
+<mat-drawer-container class="main-container" autosize>
+  <mat-drawer #drawer class="sidenav-container" mode="side" opened>
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/home">
+          <mat-icon>dashboard</mat-icon>
+        </button>
+        <a mat-button [matMenuTriggerFor]="dashboardmenu">Dashboard</a>
+        <mat-menu #dashboardmenu="matMenu">
+          <a routerLink="/home" mat-menu-item>
+          <mat-icon>dashboard </mat-icon> Skill Wise
+         </a>
+         <a routerLink="/home/domainWise/domainWise" mat-menu-item>
+          <mat-icon>domain</mat-icon>Domain Wise
+         </a>
+         <a routerLink="/home/ownerWise/ownerWise" mat-menu-item>
+          <mat-icon>filter_list</mat-icon>Owner Wise
+         </a>
+          <a routerLink="/home/projectWise/projectWise" mat-menu-item>
+          <mat-icon>filter_list</mat-icon> Project Wise
+          </a>
+          <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
+          <mat-icon>search</mat-icon>Custom Dates
+          </a>
+        </mat-menu>
+</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/newreq">
+          <mat-icon>border_color  </mat-icon>   New Requirement 
+        </button>
+     </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/listdetails">
+          <mat-icon>list</mat-icon> Requirement List
+        </button>
+       </mat-list-item>
+      <mat-divider></mat-divider>
+     <mat-list-item>
+        <button mat-icon-button routerLink="/register">
+          <mat-icon>add_box</mat-icon> Register
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/list">
+          <mat-icon>list</mat-icon> List
+        </button>
+    </mat-list-item>
+   <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/">
+          <mat-icon>details</mat-icon>
+        </button>
+        <a mat-button [matMenuTriggerFor]="profileMenu">My Profile</a>
+        <mat-menu #profileMenu="matMenu">
+          <a routerLink="/" mat-menu-item>
+            <mat-icon>person</mat-icon> Update Profile
+          </a>
+          <a routerLink="/" mat-menu-item>
+            <mat-icon>power_settings_new</mat-icon>Logout
+          </a>
+        </mat-menu>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    
+  </mat-drawer>
+
+<mat-drawer-content>
+    <form class="">
+  <button *ngIf="!showFiller"  class="button-style" title="Hide Menu" (click)="drawer.toggle()"
+  (click)="showFiller = !showFiller" >
+<i class="fa fa-angle-double-left"></i>
+</button>
+
+<button *ngIf="showFiller" class="button-style" title="Show Menu" (click)="drawer.toggle()" 
+(click)="showFiller = !showFiller" >
+<i class="fa fa-angle-double-right"></i>
+</button>
+
+<mat-form-field>
+<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<button class="button-style" title="Download to Excel" (click)="downloadToExcel()">
+<i class="fa fa-file-excel-o"></i>
+</button>
+
   <mat-card class="">
     <mat-card-title>Register</mat-card-title>
     <mat-card-content>
@@ -121,3 +209,5 @@
     </mat-card-content>
   </mat-card>
 </form>
+  </mat-drawer-content>
+</mat-drawer-container>

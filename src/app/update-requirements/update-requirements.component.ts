@@ -28,30 +28,28 @@ export class UpdateRequirementsComponent implements OnInit {
     private requirementService: RequirementService,
     private router: Router,
     private route: ActivatedRoute) {
+      let parameter = this.route.snapshot.paramMap.get('reqId');
+      if(null!=parameter){
+        this.requirementService.getRequirementListById(parameter)
+        .subscribe(dataList => {
+          this.dataList  =  dataList;
+          this.fillFormData(JSON.parse(dataList));
+          });
+      }
 
   } // form builder simplify form initialization
 
   ngOnInit() {
-    let parameter = this.route.snapshot.paramMap.get('reqId');
-    if(null!=parameter){
-      this.requirementService.getRequirementListById(parameter)
-      .subscribe(dataList => {
-        this.dataList  =  dataList;
-        this.fillFormData(JSON.parse(dataList));
-        }
-     );
-    }
+   
   }
 
 fillFormData(datalist){
-
-   // we will initialize our form model here
-   this.registerForm = this._fb.group({
-   
-    id:[datalist.id] ,
-    eucRefId: [datalist.eucRefId],
+  // we will initialize our form model here
+   this.registerForm= this._fb.group({
+    id:[datalist.id],
     rgsId:  [datalist.rgsId, [<any>Validators.required, <any>Validators.pattern('[0-9]*')]],
     reqId: [datalist.reqId, [<any>Validators.required, <any>Validators.pattern('[0-9]*')]],
+    eucRefId: [datalist.eucRefId],
     account: [datalist.account],
     positionOwner: [datalist.positionOwner, [<any>Validators.required]],
     openDate: [datalist.openDate, [<any>Validators.required]],
@@ -94,7 +92,7 @@ fillFormData(datalist){
     }
   }
 
-  update(model: RequirementDetails, isValid: boolean) {
+  update(model: RequirementDetails) {
    this.submitted = true; // set form submit to true
     this.requirementService.updateRequirement(model)
       .subscribe(response => {
@@ -102,7 +100,7 @@ fillFormData(datalist){
       });
     // check if model is valid
     // if valid, call API to save requirement
-    console.log(model, isValid);
+    console.log(model);
   }
 
 }

@@ -1,12 +1,12 @@
 <mat-card class="">
-      <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
           <mat-card> 
               <mat-card-title>Login</mat-card-title>
               <mat-card-content>
-        <table class="example-full-width" cellspacing="0">
+        <table class="login-full-width" cellspacing="0">
           <tr>
             <td>
-              <mat-form-field class="example-full-width">
+              <mat-form-field class="login-full-width">
               <input matInput formControlName="employeeId"  placeholder="User Id"  required>
               <mat-error *ngIf="loginForm.controls.employeeId.hasError('required')">Please provide Employee Id.</mat-error>
             
@@ -14,7 +14,7 @@
             </td>
           </tr>
           <tr>
-          <td><mat-form-field class="example-full-width">
+          <td><mat-form-field class="login-full-width">
             <input matInput formControlName="password" placeholder="Password" type="password"  required>
             <mat-error *ngIf="loginForm.controls.password.hasError('required')">Please provide Password.</mat-error>
             
@@ -24,12 +24,15 @@
       <tr>
           <td><button mat-raised-button type="submit" color="primary">Login</button>
            </td>
-          <td><button mat-raised-button (click)="registerUser()" color="primary">Sign up</button> </td>
+          <td><button mat-fab (click)="registerUser()" color="primary">Sign up</button> </td>
      </tr>
      <tr>
-      <td> <a href name="Forget password ?"> Forget Password ?</a>
+      <td>
+        <a mat-button (click) = "forgetPassword()">Forget Password ?</a>
       </td>
-    </tr>
+      </tr>
+
+
 </table>
        </mat-card-content>
       </mat-card>

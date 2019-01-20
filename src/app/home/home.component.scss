@@ -4,7 +4,26 @@ table {
 }
 
 .mat-form-field {
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
+}
+
+.button-style{
+    cursor: pointer;
+    margin-right: 100px;
+    font-size:20px;
+    color:black;
+  }
+
+  .table_width {
+    width: auto;
+    
+}
+
+.table_width td {
+    padding-left: 5%;
+    padding-right: 5%;
+    width: auto;
+   
 }
 

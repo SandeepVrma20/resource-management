@@ -1,49 +1,123 @@
-<form class="" [formGroup]="registerForm" (ngSubmit)="update(registerForm.value, registerForm.valid)">
+<mat-drawer-container class="main-container" autosize>
+  <mat-drawer #drawer class="sidenav-container" mode="side" opened>
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/home">
+          <mat-icon>dashboard</mat-icon>
+        </button>
+        <a mat-button [matMenuTriggerFor]="dashboardmenu">Dashboard</a>
+        <mat-menu #dashboardmenu="matMenu">
+          <a routerLink="/home" mat-menu-item>
+          <mat-icon>dashboard </mat-icon> Skill Wise
+         </a>
+         <a routerLink="/home/domainWise/domainWise" mat-menu-item>
+          <mat-icon>domain</mat-icon>Domain Wise
+         </a>
+         <a routerLink="/home/ownerWise/ownerWise" mat-menu-item>
+          <mat-icon>filter_list</mat-icon>Owner Wise
+         </a>
+          <a routerLink="/home/projectWise/projectWise" mat-menu-item>
+          <mat-icon>filter_list</mat-icon> Project Wise
+          </a>
+          <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
+          <mat-icon>search</mat-icon>Custom Dates
+          </a>
+        </mat-menu>
+</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/newreq">
+          <mat-icon>border_color  </mat-icon>   New Requirement 
+        </button>
+     </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/listdetails">
+          <mat-icon>list</mat-icon> Requirement List
+        </button>
+       </mat-list-item>
+      <mat-divider></mat-divider>
+     <mat-list-item>
+        <button mat-icon-button routerLink="/register">
+          <mat-icon>add_box</mat-icon> Register
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/list">
+          <mat-icon>list</mat-icon> List
+        </button>
+    </mat-list-item>
+   <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-icon-button routerLink="/">
+          <mat-icon>details</mat-icon>
+        </button>
+        <a mat-button [matMenuTriggerFor]="profileMenu">My Profile</a>
+        <mat-menu #profileMenu="matMenu">
+          <a routerLink="/" mat-menu-item>
+            <mat-icon>person</mat-icon> Update Profile
+          </a>
+          <a routerLink="/" mat-menu-item>
+            <mat-icon>power_settings_new</mat-icon>Logout
+          </a>
+        </mat-menu>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+   <form class="" [formGroup]="registerForm" (ngSubmit)="update(registerForm.value)">
     <mat-card>
+        <button *ngIf="!showFiller"  class="button-style" title="Hide Menu" (click)="drawer.toggle()"
+        (click)="showFiller = !showFiller" >
+       <i class="fa fa-angle-double-left"></i>
+       </button>
+    
+       <button *ngIf="showFiller" class="button-style" title="Show Menu" (click)="drawer.toggle()" 
+        (click)="showFiller = !showFiller" >
+         <i class="fa fa-angle-double-right"></i>
+       </button>
       <mat-card-title>Update Requirement</mat-card-title>
       <mat-card-content>
-        <!--
-          <mat-form-field appearance="outline">
-            <mat-label>Outline form field</mat-label>
-            <input matInput placeholder="Placeholder">
-            <mat-hint>Hint</mat-hint>
+        
+  <table class="table_width">
+    <tr>
+        <td>
+          <mat-form-field *ngIf="true" appearance="outline">
+         <mat-label>EUC Reference Id.</mat-label>
+         <input matInput formControlName="eucRefId">
+         <mat-hint>E.g.: A-1008</mat-hint>
           </mat-form-field>
-        -->
-        <table class="table_width">
-          <tr>
-              <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>EUC Reference Id.</mat-label>
-                    <input matInput formControlName="eucRefId">
-                    <mat-hint>E.g.: A-1008</mat-hint>
-                  </mat-form-field>
-                </td>
-          <td>
-              <mat-form-field appearance="outline">
+        </td>
+        <td>
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>RGS Id.</mat-label>
                 <input matInput formControlName="rgsId" pattern="[0-9]*">
                 <mat-error *ngIf="registerForm.controls.rgsId.hasError('required')">Please provide RGS Id.</mat-error>
                 <mat-error *ngIf="registerForm.controls.rgsId.hasError('pattern')">Please provide numeric RGS Id.</mat-error>
               </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field appearance="outline">
+          </td>
+          <td>
+              <mat-form-field *ngIf="true"  appearance="outline">
                 <mat-label>Requirement Id.</mat-label>
                 <input matInput formControlName="reqId" disable>
                 <mat-error *ngIf="registerForm.controls.reqId.hasError('required')">Please provide Requirement Id.</mat-error>
                 <mat-error *ngIf="registerForm.controls.rgsId.hasError('pattern')">Please provide numeric Requirement Id.</mat-error>
               </mat-form-field>
             </td>
+            
           </tr>
           <tr>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Account</mat-label>
                 <input matInput formControlName="account">
               </mat-form-field>
             </td>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Position Owner</mat-label>
                 <input matInput formControlName="positionOwner" >
                 <mat-error *ngIf="registerForm.controls.positionOwner.hasError('required')">Please provide the name of
@@ -53,13 +127,13 @@
           </tr>
           <tr>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Site</mat-label>
                 <input matInput formControlName="site">
               </mat-form-field>
             </td>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Open Date</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="openDate" >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -68,7 +142,7 @@
               </mat-form-field>
             </td>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Start Date</mat-label>
                 <input matInput [matDatepicker]="picker2" formControlName="startDate" >
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -79,13 +153,13 @@
           </tr>
           <tr>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Location</mat-label>
                 <input matInput formControlName="location">
               </mat-form-field>
             </td>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Position</mat-label>
                 <input matInput formControlName="position">
               </mat-form-field>
@@ -93,19 +167,19 @@
           </tr>
           <tr>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Skill Category</mat-label>
                 <input matInput formControlName="skillCategory" >
               </mat-form-field>
             </td>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Main Skill</mat-label>
                 <input matInput formControlName="mainSkill" >
               </mat-form-field>
             </td>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Additional Skills</mat-label>
                 <input matInput formControlName="additionalSkill">
               </mat-form-field>
@@ -113,19 +187,19 @@
           </tr>
           <tr>
               <td>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field *ngIf="true" appearance="outline">
                     <mat-label>Experience Band</mat-label>
                     <input matInput formControlName="expBand" >
                   </mat-form-field>
                 </td>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Domain</mat-label>
                 <input matInput formControlName="domain">
               </mat-form-field>
             </td>
             <td>
-              <mat-form-field appearance="outline">
+              <mat-form-field *ngIf="true" appearance="outline">
                 <mat-label>Project Name</mat-label>
                 <input matInput formControlName="projectName">
               </mat-form-field>
@@ -133,9 +207,15 @@
           </tr>
           <tr>
               <td>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field *ngIf="true" appearance="outline">
                     <mat-label>Requirement Status</mat-label>
                     <input matInput formControlName="status">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field *ngIf="true"  appearance="outline">
+                    <mat-label>Closed By</mat-label>
+                    <input matInput formControlName="closedBy">
                   </mat-form-field>
                 </td>
                 <td>
@@ -144,19 +224,17 @@
                       <input matInput formControlName="closedDate">
                     </mat-form-field>
                   </td>
-                  <td>
-                      <mat-form-field appearance="outline">
-                        <mat-label>Closed By</mat-label>
-                        <input matInput formControlName="closedBy">
-                      </mat-form-field>
-                    </td>
+                  
               </tr>
         </table>
         <br />
-        <button mat-button routerLink="/">
+        <button mat-button routerLink="/home">
           <mat-icon>chevron_left</mat-icon><span style="text-align: center;">Back</span>
         </button>
         <button mat-raised-button type="submit" color="primary">Update</button>
       </mat-card-content>
     </mat-card>
   </form>
+</mat-drawer-content>
+
+</mat-drawer-container>

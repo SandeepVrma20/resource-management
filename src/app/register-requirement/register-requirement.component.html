@@ -1,15 +1,87 @@
+<mat-drawer-container class="main-container" autosize>
+    <mat-drawer #drawer class="sidenav-container" mode="side" opened>
+      <mat-nav-list>
+        <mat-list-item>
+          <button mat-icon-button routerLink="/home">
+            <mat-icon>dashboard</mat-icon>
+          </button>
+          <a mat-button [matMenuTriggerFor]="dashboardmenu">Dashboard</a>
+          <mat-menu #dashboardmenu="matMenu">
+            <a routerLink="/home" mat-menu-item>
+            <mat-icon>dashboard </mat-icon> Skill Wise
+           </a>
+           <a routerLink="/home/domainWise/domainWise" mat-menu-item>
+            <mat-icon>domain</mat-icon>Domain Wise
+           </a>
+           <a routerLink="/home/ownerWise/ownerWise" mat-menu-item>
+            <mat-icon>filter_list</mat-icon>Owner Wise
+           </a>
+            <a routerLink="/home/projectWise/projectWise" mat-menu-item>
+            <mat-icon>filter_list</mat-icon> Project Wise
+            </a>
+            <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
+            <mat-icon>search</mat-icon>Custom Dates
+            </a>
+          </mat-menu>
+  </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <button mat-icon-button routerLink="/newreq">
+            <mat-icon>border_color  </mat-icon>   New Requirement 
+          </button>
+       </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <button mat-icon-button routerLink="/listdetails">
+            <mat-icon>list</mat-icon> Requirement List
+          </button>
+         </mat-list-item>
+        <mat-divider></mat-divider>
+       <mat-list-item>
+          <button mat-icon-button routerLink="/register">
+            <mat-icon>add_box</mat-icon> Register
+          </button>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <button mat-icon-button routerLink="/list">
+            <mat-icon>list</mat-icon> List
+          </button>
+      </mat-list-item>
+     <mat-divider></mat-divider>
+        <mat-list-item>
+          <button mat-icon-button routerLink="/">
+            <mat-icon>details</mat-icon>
+          </button>
+          <a mat-button [matMenuTriggerFor]="profileMenu">My Profile</a>
+          <mat-menu #profileMenu="matMenu">
+            <a routerLink="/" mat-menu-item>
+              <mat-icon>person</mat-icon> Update Profile
+            </a>
+            <a routerLink="/" mat-menu-item>
+              <mat-icon>power_settings_new</mat-icon>Logout
+            </a>
+          </mat-menu>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-nav-list>
+     </mat-drawer>
+<mat-drawer-content>
 <form class="" [formGroup]="registerForm" (ngSubmit)="save(registerForm.value)">
   <mat-card>
-    <mat-card-title>New Requirement</mat-card-title>
-    <mat-card-content>
-      <!--
-        <mat-form-field appearance="outline">
-          <mat-label>Outline form field</mat-label>
-          <input matInput placeholder="Placeholder">
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-      -->
-      <table class="table_width">
+    
+      <button *ngIf="!showFiller"  class="button-style" title="Hide Menu" (click)="drawer.toggle()"
+      (click)="showFiller = !showFiller" >
+          <i class="fa fa-angle-double-left"></i>
+      </button>
+  
+      <button *ngIf="showFiller" class="button-style" title="Show Menu" (click)="drawer.toggle()" 
+       (click)="showFiller = !showFiller" >
+      <i class="fa fa-angle-double-right"></i>
+      </button>
+     <h4 style="padding-right:50%;"> New Requirement </h4>
+  <mat-card-content>
+    <table class="table_width">
         <tr>
           <td>
             <mat-form-field appearance="outline">
@@ -47,7 +119,7 @@
               <mat-label>Position Owner</mat-label>
               <input matInput formControlName="positionOwner" required>
               <mat-error *ngIf="registerForm.controls.positionOwner.hasError('required')">Please provide the name of
-                the owner for this positin</mat-error>
+                the owner for this position</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -55,18 +127,23 @@
           <td>
             <mat-form-field appearance="outline">
               <mat-label>Site</mat-label>
-              <input matInput formControlName="site">
-            </mat-form-field>
+               <mat-select formControlName="site">
+                  <mat-option *ngFor="let val of site" [value]="val.value">
+                      {{val.viewValue}}
+                    </mat-option>
+              </mat-select>
+              </mat-form-field>
           </td>
           <td>
             <mat-form-field appearance="outline">
               <mat-label>Open Date</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="openDate" required>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker touchUi #picker></mat-datepicker>
+             <mat-datepicker touchUi #picker></mat-datepicker>
               <mat-error *ngIf="registerForm.controls.openDate.hasError('required')">Please provide open date</mat-error>
             </mat-form-field>
           </td>
+
           <td>
             <mat-form-field appearance="outline">
               <mat-label>Start Date</mat-label>
@@ -95,13 +172,23 @@
           <td>
             <mat-form-field appearance="outline">
               <mat-label>Skill Category</mat-label>
-              <input matInput formControlName="skillCategory" required>
-            </mat-form-field>
+               <input matInput  formControlName="skillCategory" required
+                   [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredSkillLists | async" [value]="option">
+                      {{option}}
+                    </mat-option>
+                </mat-autocomplete> 
+                <mat-error *ngIf="registerForm.controls.skillCategory.hasError('required')">Please provide skill category
+                    </mat-error>
+             </mat-form-field>
           </td>
           <td>
             <mat-form-field appearance="outline">
               <mat-label>Main Skill</mat-label>
               <input matInput formControlName="mainSkill" required>
+              <mat-error *ngIf="registerForm.controls.mainSkill.hasError('required')">Please provide Main Skill
+                </mat-error>
             </mat-form-field>
           </td>
           <td>
@@ -115,7 +202,13 @@
             <td>
                 <mat-form-field appearance="outline">
                   <mat-label>Experience Band</mat-label>
-                  <input matInput formControlName="expBand" required>
+                  <mat-select formControlName="expBand" required>
+                      <mat-option *ngFor="let exps of expBand" [value]="exps.value">
+                        {{exps.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="registerForm.controls.expBand.hasError('required')">Please provide Experience Band
+                      </mat-error>
                 </mat-form-field>
               </td>
           <td>
@@ -181,7 +274,13 @@
             <td>
                 <mat-form-field appearance="outline">
                   <mat-label>Requirement Status</mat-label>
-                  <input matInput formControlName="status">
+                  
+                  <mat-select formControlName="status">
+                      <mat-option *ngFor="let val of status" [value]="val.value">
+                          {{val.viewValue}}
+                        </mat-option>
+                  </mat-select>
+
                 </mat-form-field>
               </td>
               <td>
@@ -204,3 +303,5 @@
     </mat-card-content>
   </mat-card>
 </form>
+</mat-drawer-content>
+</mat-drawer-container>

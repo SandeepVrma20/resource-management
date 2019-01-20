@@ -14,8 +14,7 @@ export class LoginService {
   constructor(private httpClient: HttpClient) { }
 
   createUser(loginDetails: LoginDetails): Observable<Object> {
-     alert('inside services' + loginDetails.employeeId + 'url :- ' + this.baseUrl+ '/insert');
-    return this.httpClient.post(this.baseUrl + '/insert', loginDetails);
+     return this.httpClient.post(this.baseUrl + '/insert', loginDetails);
   }
 
   getUserByEmpId(loginDetails: LoginDetails): Observable<any> {

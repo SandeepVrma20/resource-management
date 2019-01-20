@@ -19,6 +19,7 @@
     "@angular/forms": "^6.1.0",
     "@angular/http": "^6.1.0",
     "@angular/material": "^6.2.0",
+    "@angular/material-moment-adapter": "^7.1.0",
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
@@ -34,7 +35,7 @@
     "ngx-file-drop": "^4.0.6",
     "popper.js": "^1.14.4",
     "rxjs": "^6.0.0",
-    "save": "^2.3.2",
+    "save": "^2.3.3",
     "xlsx": "^0.14.0",
     "zone.js": "~0.8.26"
   },

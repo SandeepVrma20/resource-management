@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
        });
     // check if model is valid
     // if valid, call API to save requirement
-     console.log(model);
+    
     }
      
   }
@@ -50,10 +50,18 @@ export class LoginComponent implements OnInit {
   fillDetails(responseMsg) {
      if (responseMsg.isSuccess == "true") {
        alert(responseMsg.response);
-       this.router.navigate(['']);
+       this.router.navigate(['home']);
     }else{
       alert(responseMsg.response);
     }
+  }
+
+  registerUser(){
+ this.router.navigate(['signup']);
+  }
+
+  forgetPassword(){
+     this.router.navigate(['forgetPwd']);
   }
 
 }

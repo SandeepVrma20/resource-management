@@ -9,12 +9,11 @@ import { RequirementDetails } from './requirementDetails';
 export class RequirementService {
 
   private baseUrl = 'http://localhost:8080/api/requirements';
-
+  
   constructor(private httpClient: HttpClient) { }
 
   createRequirement(requirementDetails: RequirementDetails): Observable<Object> {
-    // alert('inside services' + requirementDetails.eucRefId + 'url :- ' + this.baseUrl+ '/insert');
-    return this.httpClient.post(this.baseUrl + '/insert', requirementDetails);
+     return this.httpClient.post(this.baseUrl + '/insert', requirementDetails);
   }
 
   updateRequirement(requirementDetails: RequirementDetails): Observable<Object> {
@@ -29,16 +28,40 @@ export class RequirementService {
     return this.httpClient.get(this.baseUrl + '/grouped', { responseType: 'text' });
   }
 
-  getRequirementBySkill(requirementDetails:String): Observable<any> {
-    return this.httpClient.get(this.baseUrl +'/retrieve/skillCategory/'+requirementDetails, { responseType: 'text' });
+  getRequirementByFilterType(filterType:String,filterValue:String): Observable<any> {
+     return this.httpClient.get(this.baseUrl +'/retrieve/filterType/'+filterType +'/filterValue/'+filterValue, { responseType: 'text' });
   }
-
+ 
   getRequirementList(): Observable<any> {
     return this.httpClient.get(this.baseUrl , { responseType: 'text' });
   }
 
   getRequirementListById(id: String): Observable<any> {
     return this.httpClient.get(this.baseUrl  +'/id/'+id, { responseType: 'text' });
+  }
+
+  getAutoPopulateData():Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/autoFilled',{responseType:'text'});
+  }
+
+  getGrpRequirementByDomain(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/domainwise', { responseType: 'text' });
+  }
+  
+  getGrpRequirementByProject(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/projectwise', { responseType: 'text' });
+  }
+
+  getGrpRequirementByOwner(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/ownerwise', { responseType: 'text' });
+  }
+
+  getRequirementByCustomFilter(requirementDetails: RequirementDetails):Observable<any>{
+    return this.httpClient.put(this.baseUrl + '/customDates' , requirementDetails);
+  }
+
+  getGrpRequirementByMonth(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/monthwise', { responseType: 'text' });
   }
 
 }

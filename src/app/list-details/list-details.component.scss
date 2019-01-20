@@ -13,8 +13,8 @@ table {
 
   .button-style{
     cursor: pointer;
-    margin-right: 250px;
-    font-size:25px;
+    margin-right: 100px;
+    font-size:20px;
     color:black;
   }
 
@@ -24,3 +24,16 @@ table {
     color:gray;
   }
   
+  .mat-cell{
+    font-size:12px;
+    font-family: Verdana,Sans-Serif;
+    display: table-cell;
+    height: 48px;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-left: 2px solid rgba(0, 0, 0, 0.12);
+    border-right: 2px solid rgba(0, 0, 0, 0.12);
+    border-spacing: 1px;
+    text-align: center;
+    }

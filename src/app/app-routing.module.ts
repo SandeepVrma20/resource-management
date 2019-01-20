@@ -7,11 +7,45 @@ import { ListDetailsComponent } from './list-details/list-details.component';
 import { RegisterRequirementComponent } from './register-requirement/register-requirement.component';
 import { LoginComponent } from './login/login.component';
 import { UpdateRequirementsComponent } from './update-requirements/update-requirements.component';
+import {SignUpComponent } from './sign-up/sign-up.component';
+import {ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 const routes: Routes = [
   
   {
     path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignUpComponent
+  },
+  {
+    path: 'forgetPwd',
+    component: ForgetPasswordComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'home/customFilter/:filterType',
+    component: HomeComponent
+  },
+  {
+    path: 'home/domainWise/:filterType',
+    component: HomeComponent
+  },
+  {
+    path: 'home/ownerWise/:filterType',
+    component: HomeComponent
+  },
+  {
+    path: 'home/projectWise/:filterType',
+    component: HomeComponent
+  },
+  {
+    path: 'home/monthWise/:filterType',
     component: HomeComponent
   },
   {
@@ -39,7 +73,7 @@ const routes: Routes = [
     component: UpdateRequirementsComponent
   },
   {
-    path: 'listdetails/:mainSkill',
+    path: 'listdetails/:filterValue/:filterType',
     component: ListDetailsComponent
   }
 ];

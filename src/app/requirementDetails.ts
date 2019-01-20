@@ -33,6 +33,7 @@ export class RequirementDetails {
     public through?: string;
     public closedBy?: string;
     public remarks?: string;
+    public dashboardType ? :string;
 
     constructor(
         

@@ -5,6 +5,7 @@ import { RequirementDetails } from '../requirementDetails';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ParsedVariable } from '@angular/compiler';
 import { ExcelService } from '../excel.service';
+import {RequirementGrpDetails} from '../requirementGrpDetails';
 
 @Component({
   selector: 'app-list-details',
@@ -13,13 +14,15 @@ import { ExcelService } from '../excel.service';
 })
 export class ListDetailsComponent implements OnInit {
 
-  columnHeadersOrder: string[] = ['rgsId', 'reqId', 'account', 'positionOwner', 'openDate', 'position', 'skillCategory',
+  columnHeadersOrder: string[] = ['rgsId', 'reqId', 'account', 'positionOwner', 'openDate','startDate', 'position', 'skillCategory',
     'mainSkill', 'additionalSkill', 'domain', 'projectName', 'expBand','status','action'];
 
   dataList: any;
-  data: any;
+  data: RequirementDetails[]; //any;
   resultsLength: any;
   dataSource = new MatTableDataSource(this.dataList);
+  showFiller = false;
+  filterDataList : RequirementGrpDetails[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -33,8 +36,9 @@ export class ListDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    let parameter = this.route.snapshot.paramMap.get('mainSkill');
-    if (parameter == null) {
+    let filterValue = this.route.snapshot.paramMap.get('filterValue');
+    let filterType= this.route.snapshot.paramMap.get('filterType');
+   if (filterValue == null && null==filterType) {
       this.requiermentService.getRequirementList()
         .subscribe(dataList => {
           this.dataList = dataList;
@@ -42,7 +46,7 @@ export class ListDetailsComponent implements OnInit {
         }
         );
     } else {
-      this.requiermentService.getRequirementBySkill(parameter)
+      this.requiermentService.getRequirementByFilterType(filterType,filterValue)
         .subscribe(dataList => {
            this.dataList  =  dataList;
           //this.dataList = JSON.parse(dataList);
