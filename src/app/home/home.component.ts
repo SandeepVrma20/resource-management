@@ -137,14 +137,13 @@ status:requirementStatus[]=[
     }
     );
  }else if(null!=parameter && parameter=="monthWise"){
-   alert('inside month');
   this.customDashboard=false;
   this.skillDashboard =false;
   this.domainDashboard =false;
   this.ownerDashboard =false;
   this.projectDashboard =false;
   this.monthlyDashboard=true;
-  this.columnHeadersOrder = ['projectName', 'count'];
+  this.columnHeadersOrder = ['monthYear', 'count'];
   this.requirementService.getGrpRequirementByMonth()
       .subscribe(dataList => {
     this.dataList = dataList;

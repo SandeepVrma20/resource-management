@@ -81,7 +81,27 @@ export class ListDetailsComponent implements OnInit {
   }
 
   updateReq(rowData){
-    this.router.navigate(['/editreq', rowData.reqId]);
+   let filterTypeValue=this.route.snapshot.paramMap.get('filterType');
+    if(null==filterTypeValue){
+      filterTypeValue="NA"
+    }
+    this.router.navigate(['/editreq', rowData.reqId,filterTypeValue]);
+  }
+
+  backToPrevPage(){
+    let filterType=this.route.snapshot.paramMap.get('filterType');
+    if(null!=filterType && filterType=='domain'){
+      this.router.navigateByUrl('/home/domainWise/domainWise');
+    }else if(null!=filterType && filterType=='mainSkill'){
+      this.router.navigateByUrl('/home');
+    }else if(null!=filterType && filterType=='positionOwner'){
+      this.router.navigateByUrl('/home/ownerWise/ownerWise');
+    }else if(null!=filterType && filterType=='projectName'){
+      this.router.navigateByUrl('/home/projectWise/projectWise');
+    }else {
+      this.router.navigateByUrl('/home');
+    }
+   
   }
 
 }

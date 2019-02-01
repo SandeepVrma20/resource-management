@@ -29,6 +29,8 @@ export class UpdateRequirementsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) {
       let parameter = this.route.snapshot.paramMap.get('reqId');
+      let filterType= this.route.snapshot.paramMap.get('filterType');
+   
       if(null!=parameter){
         this.requirementService.getRequirementListById(parameter)
         .subscribe(dataList => {
@@ -101,6 +103,22 @@ fillFormData(datalist){
     // check if model is valid
     // if valid, call API to save requirement
     console.log(model);
+  }
+
+  backToPrevPage(){
+    let filterType=this.route.snapshot.paramMap.get('filterType');
+    if(null!=filterType && filterType=='domain'){
+      this.router.navigateByUrl('/home/domainWise/domainWise');
+    }else if(null!=filterType && filterType=='mainSkill'){
+      this.router.navigateByUrl('/home');
+    }else if(null!=filterType && filterType=='positionOwner'){
+      this.router.navigateByUrl('/home/ownerWise/ownerWise');
+    }else if(null!=filterType && filterType=='projectName'){
+      this.router.navigateByUrl('/home/projectWise/projectWise');
+    }else {
+      this.router.navigateByUrl('/home');
+    }
+   
   }
 
 }

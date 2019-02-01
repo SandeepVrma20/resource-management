@@ -19,6 +19,9 @@
             <a routerLink="/home/projectWise/projectWise" mat-menu-item>
             <mat-icon>filter_list</mat-icon> Project Wise
             </a>
+            <a routerLink="/home/monthWise/monthWise" mat-menu-item>
+              <mat-icon>filter_list</mat-icon> Monthly Report
+              </a>
             <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
             <mat-icon>search</mat-icon>Custom Dates
             </a>
@@ -164,9 +167,12 @@
       <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
     </div>
     <br />
-    <button mat-button routerLink="/home">
+    <!-- <button mat-button routerLink="/home">
       <mat-icon>chevron_left</mat-icon><span style="text-align: center;">Back</span>
-    </button>
+    </button> -->
+    <button mat-button>
+      <mat-icon>chevron_left</mat-icon><span style="text-align: center;" (click)="backToPrevPage()">Back</span>
+    </button> 
     </mat-card-content>
  </mat-drawer-content>
 </mat-drawer-container>

@@ -134,18 +134,18 @@ site:siteList[]=[
 ]
 
 expBand: ExperienceBand[] = [
-  {value: '0-1 yrs', viewValue: '0-1 yrs'},
-  {value: '1-2 yrs', viewValue: '1-2 yrs'},
-  {value: '2-3 yrs', viewValue: '2-3 yrs'},
-  {value: '3-4 yrs', viewValue: '3-4 yrs'},
-  {value: '4-5 yrs', viewValue: '4-5 yrs'},
-  {value: '5-6 yrs', viewValue: '5-6 yrs'},
-  {value: '6-7 yrs', viewValue: '6-7 yrs'},
-  {value: '7-8 yrs', viewValue: '7-8 yrs'},
-  {value: '8-9 yrs', viewValue: '8-9 yrs'},
-  {value: '9-10 yrs', viewValue: '8-10 yrs'},
-  {value: '10-11 yrs', viewValue: '10-11 yrs'},
-  {value: '11 + yrs', viewValue: '11 + yrs'}
+  {value: '0-2 yrs', viewValue: '0-2 yrs'},
+  {value: '0-4 yrs', viewValue: '0-4 yrs'},
+  {value: '2-4 yrs', viewValue: '2-4 yrs'},
+  {value: '2-6 yrs', viewValue: '2-6 yrs'},
+  {value: '4-6 yrs', viewValue: '4-6 yrs'},
+  {value: '4-8 yrs', viewValue: '4-8 yrs'},
+  {value: '6-8 yrs', viewValue: '6-8 yrs'},
+  {value: '6-10 yrs', viewValue: '6-10 yrs'},
+  {value: '8-10 yrs', viewValue: '8-10 yrs'},
+  {value: '8-12 yrs', viewValue: '8-12 yrs'},
+  {value: '10-12 yrs', viewValue: '10-12 yrs'},
+  {value: '12 + yrs', viewValue: '12 + yrs'}
   
 ];
 
