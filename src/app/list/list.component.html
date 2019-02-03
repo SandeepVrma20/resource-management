@@ -20,7 +20,7 @@
         <mat-icon>filter_list</mat-icon> Project Wise
         </a>
         <a routerLink="/home/monthWise/monthWise" mat-menu-item>
-          <mat-icon>filter_list</mat-icon> Monthly Report
+          <mat-icon>filter_list</mat-icon> Ageing Report
           </a>
         <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
         <mat-icon>search</mat-icon>Custom Dates
@@ -53,15 +53,13 @@
   </mat-list-item>
  <mat-divider></mat-divider>
     <mat-list-item>
-      <button mat-icon-button routerLink="/">
-        <mat-icon>details</mat-icon>
-      </button>
-      <a mat-button [matMenuTriggerFor]="profileMenu">My Profile</a>
+      <mat-icon>details</mat-icon>
+       <a mat-button [matMenuTriggerFor]="profileMenu">My Profile</a>
       <mat-menu #profileMenu="matMenu">
-        <a routerLink="/" mat-menu-item>
+        <a routerLink="/updateProfile" mat-menu-item>
           <mat-icon>person</mat-icon> Update Profile
         </a>
-        <a routerLink="/" mat-menu-item>
+        <a routerLink="/logout" mat-menu-item>
           <mat-icon>power_settings_new</mat-icon>Logout
         </a>
       </mat-menu>

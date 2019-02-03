@@ -1,13 +1,15 @@
 <mat-card class="">
-      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+     <!-- <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)"> -->
+     <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login($event)">
           <mat-card> 
               <mat-card-title>Login</mat-card-title>
-              <mat-card-content>
+      <mat-card-content>
+        <div *ngIf="isLoginFail"><span > <h6> Incorect login and password.!!! </h6></span></div>
         <table class="login-full-width" cellspacing="0">
           <tr>
             <td>
               <mat-form-field class="login-full-width">
-              <input matInput formControlName="employeeId"  placeholder="User Id"  required>
+              <input matInput formControlName="employeeId"  placeholder="User Id" id="employeeId" required>
               <mat-error *ngIf="loginForm.controls.employeeId.hasError('required')">Please provide Employee Id.</mat-error>
             
               </mat-form-field>
@@ -15,7 +17,7 @@
           </tr>
           <tr>
           <td><mat-form-field class="login-full-width">
-            <input matInput formControlName="password" placeholder="Password" type="password"  required>
+            <input matInput formControlName="password" placeholder="Password" type="password" id="password" required>
             <mat-error *ngIf="loginForm.controls.password.hasError('required')">Please provide Password.</mat-error>
             
           </mat-form-field></td>

@@ -25,6 +25,7 @@ export interface requirementStatus {
 export class HomeComponent implements OnInit {
 
   columnHeadersOrder: string[] = ['mainSkill', 'count'];
+  columnAgeingOrder: string[] = ['monthYear', 'count', 'OpenOffshoreCount','OpenOnshoreCount','ClosedOffshoreCount','ClosedOnshoreCount'];
   dataList: RequirementDetails[];
   dataSource: any;
   resultsLength: any;
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit {
   domainDashboard =false;
   ownerDashboard =false;
   projectDashboard =false;
-  monthlyDashboard =false;
+  ageingDashboard =false;
   customDashboard =false;
   filterDataList : RequirementGrpDetails[];
   dashboardViewSkill =false;
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
   dashboardViewDomain =false;
   dashboardNoData =false;
   dashboardViewMonthly =false;
+  username:String;
   
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -75,7 +77,7 @@ status:requirementStatus[]=[
 ]
 
   ngOnInit() {
-
+    this.username=localStorage.getItem('firstName');
     let parameter = this.route.snapshot.paramMap.get('filterType');
     if(null!=parameter && parameter=="customFilter"){
     this.customDashboard=true;
@@ -83,7 +85,7 @@ status:requirementStatus[]=[
     this.domainDashboard =false;
     this.ownerDashboard =false;
     this.projectDashboard =false;
-    this.monthlyDashboard=false;
+    this.ageingDashboard=false;
     this.dashboardForm = this._fb.group({
       account: [''],
       location: [''],
@@ -98,7 +100,7 @@ status:requirementStatus[]=[
         this.domainDashboard =true;
         this.ownerDashboard =false;
         this.projectDashboard =false;
-        this.monthlyDashboard=false;
+        this.ageingDashboard=false;
         this.columnHeadersOrder = ['domain', 'count'];
        this.requirementService.getGrpRequirementByDomain()
         .subscribe(dataList => {
@@ -113,7 +115,7 @@ status:requirementStatus[]=[
       this.domainDashboard =false;
       this.ownerDashboard =false;
       this.projectDashboard =true;
-      this.monthlyDashboard=false;
+      this.ageingDashboard=false;
       this.columnHeadersOrder = ['projectName', 'count'];
       this.requirementService.getGrpRequirementByProject()
         .subscribe(dataList => {
@@ -128,7 +130,7 @@ status:requirementStatus[]=[
     this.domainDashboard =false;
     this.ownerDashboard =true;
     this.projectDashboard =false;
-    this.monthlyDashboard=false;
+    this.ageingDashboard=false;
     this.columnHeadersOrder = ['positionOwner', 'count'];
     this.requirementService.getGrpRequirementByOwner()
         .subscribe(dataList => {
@@ -142,8 +144,8 @@ status:requirementStatus[]=[
   this.domainDashboard =false;
   this.ownerDashboard =false;
   this.projectDashboard =false;
-  this.monthlyDashboard=true;
-  this.columnHeadersOrder = ['monthYear', 'count'];
+  this.ageingDashboard=true;
+  //this.columnHeadersOrder = ['monthYear', 'count'];
   this.requirementService.getGrpRequirementByMonth()
       .subscribe(dataList => {
     this.dataList = dataList;
@@ -157,7 +159,7 @@ status:requirementStatus[]=[
       this.domainDashboard =false;
       this.ownerDashboard =false;
       this.projectDashboard =false;
-      this.monthlyDashboard=false;
+      this.ageingDashboard=false;
      this.requirementService.getGrpRequirement()
      .subscribe(dataList => {
       this.dataList = dataList;

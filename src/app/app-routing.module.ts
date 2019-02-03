@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { UpdateRequirementsComponent } from './update-requirements/update-requirements.component';
 import {SignUpComponent } from './sign-up/sign-up.component';
 import {ForgetPasswordComponent } from './forget-password/forget-password.component';
+import {AuthGuard} from './auth.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   
@@ -25,28 +27,38 @@ const routes: Routes = [
     component: ForgetPasswordComponent
   },
   {
+    path: 'logout',
+    component: LogoutComponent
+  },
+  {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'home/customFilter/:filterType',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'home/domainWise/:filterType',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'home/ownerWise/:filterType',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'home/projectWise/:filterType',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'home/monthWise/:filterType',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'login',
@@ -54,27 +66,33 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'list',
-    component: ListComponent
+    component: ListComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'listdetails',
-    component: ListDetailsComponent
+    component: ListDetailsComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'newreq',
-    component: RegisterRequirementComponent
+    component: RegisterRequirementComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'editreq/:reqId/:filterType',
-    component: UpdateRequirementsComponent
+    component: UpdateRequirementsComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: 'listdetails/:filterValue/:filterType',
-    component: ListDetailsComponent
+    component: ListDetailsComponent,
+    canActivate : [AuthGuard]
   }
 ];
 

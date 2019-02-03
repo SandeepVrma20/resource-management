@@ -20,7 +20,7 @@
             <mat-icon>filter_list</mat-icon> Project Wise
             </a>
             <a routerLink="/home/monthWise/monthWise" mat-menu-item>
-              <mat-icon>filter_list</mat-icon> Monthly Report
+              <mat-icon>filter_list</mat-icon> Ageing Report
               </a>
             <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
             <mat-icon>search</mat-icon>Custom Dates
@@ -53,15 +53,13 @@
       </mat-list-item>
      <mat-divider></mat-divider>
         <mat-list-item>
-          <button mat-icon-button routerLink="/">
-            <mat-icon>details</mat-icon>
-          </button>
+         <mat-icon>details</mat-icon>
           <a mat-button [matMenuTriggerFor]="profileMenu">My Profile</a>
           <mat-menu #profileMenu="matMenu">
-            <a routerLink="/" mat-menu-item>
+            <a routerLink="/updateProfile" mat-menu-item>
               <mat-icon>person</mat-icon> Update Profile
             </a>
-            <a routerLink="/" mat-menu-item>
+            <a routerLink="/logout" mat-menu-item>
               <mat-icon>power_settings_new</mat-icon>Logout
             </a>
           </mat-menu>
@@ -72,7 +70,9 @@
 <mat-drawer-content>
 <form class="" [formGroup]="registerForm" (ngSubmit)="save(registerForm.value)">
   <mat-card>
-    
+      <div class="welcome_header">
+      <h5>Welcome {{username}}  </h5> 
+     </div>
       <button *ngIf="!showFiller"  class="button-style" title="Hide Menu" (click)="drawer.toggle()"
       (click)="showFiller = !showFiller" >
           <i class="fa fa-angle-double-left"></i>
@@ -82,7 +82,7 @@
        (click)="showFiller = !showFiller" >
       <i class="fa fa-angle-double-right"></i>
       </button>
-     <h4 style="padding-right:50%;"> New Requirement </h4>
+     <h4 style="text-align:center;width:30%"> New Requirement </h4>
   <mat-card-content>
     <table class="table_width">
         <tr>
@@ -94,7 +94,7 @@
             </mat-form-field>
           </td>
           <td>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>RGS Id.</mat-label>
               <input matInput formControlName="rgsId" pattern="[0-9]*" required>
               <mat-error *ngIf="registerForm.controls.rgsId.hasError('required')">Please provide RGS Id.</mat-error>
@@ -102,7 +102,7 @@
             </mat-form-field>
           </td>
           <td>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Requirement Id.</mat-label>
               <input matInput formControlName="reqId" required>
               <mat-error *ngIf="registerForm.controls.reqId.hasError('required')">Please provide Requirement Id.</mat-error>
@@ -118,7 +118,7 @@
             </mat-form-field>
           </td>
           <td>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Position Owner</mat-label>
               <input matInput formControlName="positionOwner" required>
               <mat-error *ngIf="registerForm.controls.positionOwner.hasError('required')">Please provide the name of
@@ -128,7 +128,7 @@
         </tr>
         <tr>
           <td>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Site</mat-label>
                <mat-select formControlName="site">
                   <mat-option *ngFor="let val of site" [value]="val.value">
@@ -173,7 +173,7 @@
         </tr>
         <tr>
           <td>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Skill Category</mat-label>
                <input matInput  formControlName="skillCategory" required
                    [matAutocomplete]="auto">
@@ -187,7 +187,7 @@
              </mat-form-field>
           </td>
           <td>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Main Skill</mat-label>
               <input matInput formControlName="mainSkill" required>
               <mat-error *ngIf="registerForm.controls.mainSkill.hasError('required')">Please provide Main Skill
@@ -203,7 +203,7 @@
         </tr>
         <tr>
             <td>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                   <mat-label>Experience Band</mat-label>
                   <mat-select formControlName="expBand" required>
                       <mat-option *ngFor="let exps of expBand" [value]="exps.value">

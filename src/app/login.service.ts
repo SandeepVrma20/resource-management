@@ -10,6 +10,18 @@ import { LoginDetails } from './loginDetails';
 export class LoginService {
 
   private baseUrl = 'http://localhost:8080/api/user';
+
+  private loggedInStatus=JSON.parse(localStorage.getItem('loggedIn') || 'false');;
+  //private loggedInStatus=false;
+    setLoggedIn(value:boolean){
+    this.loggedInStatus=value;
+    localStorage.setItem('loggedIn','true');
+   }
+ 
+   getIsLoggedIn(){
+     //return this.loggedInStatus;
+     return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
+   }
   
   constructor(private httpClient: HttpClient) { }
 

@@ -59,7 +59,9 @@ import { LoginComponent } from './login/login.component';
 import { UpdateRequirementsComponent } from './update-requirements/update-requirements.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-
+import { AuthGuard } from './auth.guard';
+import { LogoutComponent } from './logout/logout.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     LoginComponent,
     UpdateRequirementsComponent,
     SignUpComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    LogoutComponent,
+    UpdateProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +119,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     MatToolbarModule,
     MatTooltipModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

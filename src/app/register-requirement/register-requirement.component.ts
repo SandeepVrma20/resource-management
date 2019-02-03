@@ -44,7 +44,7 @@ export class RegisterRequirementComponent implements OnInit  {
   preFilledData :any[];
   filteredSkillLists: Observable<any[]>;
   listSkill: string[];
-  
+  username:string;
   public reqPageData: RequirementDetails = new RequirementDetails();
 
   //skillCategory :FormControl= new FormControl();
@@ -59,6 +59,7 @@ export class RegisterRequirementComponent implements OnInit  {
   } // form builder simplify form initialization
 
 ngOnInit() {
+  this.username=localStorage.getItem('firstName');
     let parameter = this.route.snapshot.paramMap.get('reqId');
     if(null!=parameter){
       this.requirementService.getRequirementListById(parameter)

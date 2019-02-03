@@ -23,6 +23,7 @@ export class ListDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource(this.dataList);
   showFiller = false;
   filterDataList : RequirementGrpDetails[];
+  username:String;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -36,7 +37,8 @@ export class ListDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    let filterValue = this.route.snapshot.paramMap.get('filterValue');
+    this.username=localStorage.getItem('firstName');
+     let filterValue = this.route.snapshot.paramMap.get('filterValue');
     let filterType= this.route.snapshot.paramMap.get('filterType');
    if (filterValue == null && null==filterType) {
       this.requiermentService.getRequirementList()

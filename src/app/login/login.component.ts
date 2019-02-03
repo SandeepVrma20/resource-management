@@ -3,6 +3,7 @@ import { LoginDetails } from '../loginDetails';
 import { LoginService } from '../login.service';
 import { Routes, RouterModule, Router ,ActivatedRoute} from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, FormGroupDirective, NgForm, Validators, ReactiveFormsModule } from '@angular/forms';
+import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 
 @Component({
@@ -18,8 +19,10 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute) {
      }
 
+     private loggedInStatus=JSON.parse(localStorage.getItem('loggedIn') || 'false' );
      public loginForm: FormGroup;
      dataList: LoginDetails;
+     isLoginFail= false;
 
   ngOnInit() {
 
@@ -34,12 +37,28 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(model: LoginDetails) {
-    if(model.password!=""){
-      this.loginService.getUserByEmpId(model)
+  setLoggedIn(value:boolean){
+   this.loggedInStatus=value;
+   localStorage.setItem('loggedIn','true');
+  }
+
+  getIsLoggedIn(){
+    return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
+  }
+
+  login(event) {
+    
+    event.preventDefault();
+    const target= event.target;
+    const employeeId=target.querySelector('#employeeId').value;
+    const password=target.querySelector('#password').value;
+    console.log(employeeId,password);
+    if(password!="" && employeeId !=""){
+      this.dataList= { 'employeeId': employeeId, 'password': password };
+      this.loginService.getUserByEmpId(this.dataList)
       .subscribe(response => {
         this.fillDetails(response);
-       });
+      });
     // check if model is valid
     // if valid, call API to save requirement
     
@@ -48,13 +67,15 @@ export class LoginComponent implements OnInit {
   }
 
   fillDetails(responseMsg) {
-     if (responseMsg.isSuccess == "true") {
-       alert(responseMsg.response);
-       this.router.navigate(['home']);
+    if (responseMsg.isSuccess == "true") {
+     this.loginService.setLoggedIn(true);
+     this.router.navigate(['home']);
+     localStorage.setItem("firstName",responseMsg.firstName);
+     localStorage.setItem("employeeId",responseMsg.employeeId);
     }else{
-      alert(responseMsg.response);
-    }
-  }
+      this.isLoginFail=true;
+     }
+ }
 
   registerUser(){
  this.router.navigate(['signup']);

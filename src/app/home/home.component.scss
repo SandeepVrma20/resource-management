@@ -16,14 +16,20 @@ table {
   }
 
   .table_width {
-    width: auto;
+    width: 30%;
+    text-align:center;
     
 }
 
 .table_width td {
     padding-left: 5%;
     padding-right: 5%;
-    width: auto;
+    
    
+}
+
+.welcome_header {
+   width: 100%; 
+   text-align:right;
 }
 
