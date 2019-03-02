@@ -51,8 +51,7 @@ export class SignUpComponent implements OnInit {
       alert('password does not match');
     }
     console.log(model);
-    alert(model);
-    this.loginService.createUser(model)
+     this.loginService.createUser(model)
     .subscribe(response => {
       this.fillDetails(response);
      });
@@ -60,7 +59,7 @@ export class SignUpComponent implements OnInit {
     }
 
     fillDetails(responseMsg) {
-      alert(responseMsg.response);
+     // alert(responseMsg.response);
       console.log(responseMsg);
       if (responseMsg.flag == true) {
         this.router.navigate(['/login']);

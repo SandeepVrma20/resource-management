@@ -1,7 +1,46 @@
 table {
-    width: 100%;
+    width: 1200px;
+    column-span: 5px;
 }
-.welcome_header {
-    width: 100%; 
-    text-align:right;
+
+ 
+ .mat-form-field {
+     font-size: 20px;
  }
+ .button-right .button-group {
+     position: absolute;
+     right: 0px;
+     margin: 0;
+   }
+ 
+   .button-style{
+     cursor: pointer;
+     margin-right: 100px;
+     font-size:20px;
+     color:black;
+   }
+ 
+   .button-style-update{
+     cursor: pointer;
+     font-size:20px;
+     color:gray;
+   }
+   
+   .mat-cell{
+     font-size:12px;
+     font-family: Verdana,Sans-Serif;
+     display: table-cell;
+     height: 48px;
+     vertical-align: middle;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+     border-top: 1px solid rgba(0, 0, 0, 0.12);
+     border-left: 2px solid rgba(0, 0, 0, 0.12);
+     border-right: 2px solid rgba(0, 0, 0, 0.12);
+     border-spacing: 1px;
+     text-align: center;
+     }
+ 
+     .welcome_header {
+       width: 100%; 
+       text-align:right;
+    }

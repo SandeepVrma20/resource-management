@@ -32,7 +32,7 @@ export class EmployeeService {
   }
 
   getEmployeesList(): Observable<any> {
-    return this.httpClient.get('${this.baseUrl}');
+     return this.httpClient.get(this.baseUrl , { responseType: 'text' });
   }
 
   getRequirementList(): Observable<any> {

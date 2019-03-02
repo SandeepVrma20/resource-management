@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { EmployeeDetails } from './../employeeDetails';
+import { ExcelService } from '../excel.service';
+import { EmployeeService } from '../employee.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -10,13 +14,47 @@ export class ListComponent implements OnInit {
 
   header = 'List';
 
-  displayedColumns: string[] = ['employeeId', 'firstName', 'lastName', 'email', 'phone'];
+  displayedColumns: string[] = ['employeeId', 'firstName', 'lastName', 'gender','email', 'phone','dob','city'];
 
-  dataSource = ELEMENT_DATA;
+  //dataSource = ELEMENT_DATA;
+  isAdmin=true;
+  username:String
 
-  constructor() { }
+  dataList: any;
+  data: EmployeeDetails[]; //any;
+  resultsLength: any;
+  dataSource = new MatTableDataSource(this.dataList);
+  showFiller = false;
+  
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
+  constructor(private employeeService: EmployeeService,
+    private route: ActivatedRoute,
+    private excelService: ExcelService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.username=localStorage.getItem('firstName');
+    if(null!=localStorage.getItem("isAdmin") && localStorage.getItem("isAdmin")=="false"){
+      this.isAdmin =false;
+     }
+
+     this.employeeService.getEmployeesList()
+     .subscribe(dataList => {
+       this.dataList = dataList;
+       this.fillDetails(JSON.parse(dataList));
+     }
+     );
+  }
+  fillDetails(dataList) {
+    this.dataSource = new MatTableDataSource(dataList);
+    this.resultsLength = dataList.length;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 }

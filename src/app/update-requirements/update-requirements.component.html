@@ -19,7 +19,7 @@
           <a routerLink="/home/projectWise/projectWise" mat-menu-item>
           <mat-icon>filter_list</mat-icon> Project Wise
           </a>
-          <a routerLink="/home/monthWise/monthWise" mat-menu-item>
+          <a *ngIf="isAdmin" routerLink="/home/monthWise/monthWise" mat-menu-item>
             <mat-icon>filter_list</mat-icon> Ageing Report
             </a>
           <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
@@ -71,6 +71,11 @@
   <mat-drawer-content>
    <form class="" [formGroup]="registerForm" (ngSubmit)="update(registerForm.value)">
     <mat-card>
+
+        <div class="welcome_header">
+            <h5>Welcome {{username}}  </h5> 
+            </div>
+
         <button *ngIf="!showFiller"  class="button-style" title="Hide Menu" (click)="drawer.toggle()"
         (click)="showFiller = !showFiller" >
        <i class="fa fa-angle-double-left"></i>
@@ -80,7 +85,7 @@
         (click)="showFiller = !showFiller" >
          <i class="fa fa-angle-double-right"></i>
        </button>
-      <mat-card-title>Update Requirement</mat-card-title>
+     <h4 style="text-align:center;width:30%"> Update Requirement </h4>
       <mat-card-content>
         
   <table class="table_width">

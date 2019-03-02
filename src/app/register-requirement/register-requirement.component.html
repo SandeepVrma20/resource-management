@@ -19,7 +19,7 @@
             <a routerLink="/home/projectWise/projectWise" mat-menu-item>
             <mat-icon>filter_list</mat-icon> Project Wise
             </a>
-            <a routerLink="/home/monthWise/monthWise" mat-menu-item>
+            <a *ngIf="isAdmin" routerLink="/home/monthWise/monthWise" mat-menu-item>
               <mat-icon>filter_list</mat-icon> Ageing Report
               </a>
             <a routerLink="/home/customFilter/customFilter"  mat-menu-item>

@@ -24,6 +24,7 @@ export class ListDetailsComponent implements OnInit {
   showFiller = false;
   filterDataList : RequirementGrpDetails[];
   username:String;
+  isAdmin=true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,6 +39,9 @@ export class ListDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.username=localStorage.getItem('firstName');
+    if(null!=localStorage.getItem("isAdmin") && localStorage.getItem("isAdmin")=="false"){
+      this.isAdmin =false;
+     }
      let filterValue = this.route.snapshot.paramMap.get('filterValue');
     let filterType= this.route.snapshot.paramMap.get('filterType');
    if (filterValue == null && null==filterType) {

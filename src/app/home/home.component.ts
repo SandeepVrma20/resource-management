@@ -6,6 +6,7 @@ import { RequirementDetails } from '../requirementDetails';
 import { RequirementGrpDetails } from '../requirementGrpDetails';
 import { FormGroup, FormControl, FormBuilder, FormGroupDirective, NgForm, Validators, ReactiveFormsModule } from '@angular/forms';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {Chart} from 'chart.js';
 
 export interface filterCriteria {
   value: string;
@@ -45,8 +46,23 @@ export class HomeComponent implements OnInit {
   dashboardNoData =false;
   dashboardViewMonthly =false;
   username:String;
+  public barChartLabels=[];
+  public barChartData:Array<{data: any[], label: string}>;
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  isAdmin=true;
   
-  
+  chart=[];
+
+  mybarChartDataOpenOff = [];//[65, 59, 80, 81, 56, 55, 40,70,20,40,25,90];
+  mybarChartDataOpenOn =[];//[28, 48, 40, 19, 86, 27, 90,30,20,40,25,70]
+  mybarChartDataCloseOff =[];//[65, 59, 80, 81, 56, 55, 40,50,20,40,25,40]
+  mybarChartDataCloseOn =[];//[28, 48, 40, 19, 86, 27, 90,20,20,40,25,10]
+  mybarChartDataOffshoreCount =[];
+  mybarChartDataOnshoreCount =[];
+
+
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -63,7 +79,87 @@ export class HomeComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
- 
+  fillBarChartDetails(dataList){
+  
+    this.barChartLabels =dataList.MonthYear;
+    this.mybarChartDataOpenOff = dataList.OpenOffshore;
+    this.mybarChartDataOpenOn =dataList.OpenOnshore;
+    this.mybarChartDataCloseOff =dataList.CloseOffshore;
+    this.mybarChartDataCloseOn =dataList.CloseOnshore;
+    this.mybarChartDataOffshoreCount=dataList.totalOffshore;
+    this.mybarChartDataOnshoreCount=dataList.totalOnshore;
+
+    this.barChartData= [
+    {data: this.mybarChartDataOpenOff, label: "Open Offshore Req"},
+    {data: this.mybarChartDataOpenOn, label: 'Open Onshore Req'},
+    {data: this.mybarChartDataCloseOff, label: 'Closed Offshore Req'},
+    {data: this.mybarChartDataCloseOn, label: 'Closed Onshore Req '},
+    {data: this.mybarChartDataOffshoreCount, label: 'Total Offshore Req'},
+    {data: this.mybarChartDataOnshoreCount, label: 'Total Onshore Req '}
+  
+  ];
+
+  this.chart=new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    
+    data: {
+      labels: dataList.MonthYear,
+      datasets: [
+        {
+          label: "Total Onshore Req",
+          data: this.mybarChartDataOnshoreCount,
+          backgroundColor: "#2874A6",
+          fontColor: 'white'
+          
+        },
+        {
+          label: "Total Offshore Req",
+          data: this.mybarChartDataOffshoreCount,
+          backgroundColor: "#DC7633",
+          fontColor: 'white'
+        },
+        {
+          label: "Open Offshore Req",
+          data: this.mybarChartDataOpenOff,
+          backgroundColor: "#CD6155",
+          fontColor: 'white'
+        },
+        {
+          label: "Closed Offshore Req",
+          data: this.mybarChartDataCloseOff,
+          backgroundColor: "#138D75",
+          fontColor: 'white'
+          
+        },
+        {
+          label: "Open Onshore Req",
+          data: this.mybarChartDataOpenOn,
+          backgroundColor: "#2874A6",
+          fontColor: 'white'
+          
+        },
+        {
+          label: "Closed Onshore Req",
+          data: this.mybarChartDataCloseOn,
+          backgroundColor: "#DC7633",
+          fontColor: 'white'
+        }
+        
+      ]
+    },
+    options: {
+      scaleShowVerticalLines: false,
+      responsive: true,
+      title: {
+        display: true,
+        fontColor: 'white',
+        text: 'Overall requirement overview in last one year'
+      }
+     
+    }
+ });
+}
+
   dashBoardFilter:filterCriteria[]=[
     {viewValue:"Main Skill" ,value:"mainSkill"},
     {viewValue:"Domain",value:"domain"},
@@ -73,12 +169,19 @@ export class HomeComponent implements OnInit {
 
 status:requirementStatus[]=[
   {viewValue:"Open" ,value:"Open"},
-  {viewValue:"Closed",value:"Closed"}
+  {viewValue:"Closed",value:"Closed"},
+  {viewValue:"Cancelled",value:"Cancelled"}
 ]
 
   ngOnInit() {
     this.username=localStorage.getItem('firstName');
+    if(null!=localStorage.getItem("isAdmin") && localStorage.getItem("isAdmin")=="false"){
+      this.isAdmin =false;
+     }
+    
+    
     let parameter = this.route.snapshot.paramMap.get('filterType');
+
     if(null!=parameter && parameter=="customFilter"){
     this.customDashboard=true;
     this.skillDashboard =false;
@@ -145,12 +248,11 @@ status:requirementStatus[]=[
   this.ownerDashboard =false;
   this.projectDashboard =false;
   this.ageingDashboard=true;
-  //this.columnHeadersOrder = ['monthYear', 'count'];
   this.requirementService.getGrpRequirementByMonth()
-      .subscribe(dataList => {
-    this.dataList = dataList;
-    this.fillDetails(JSON.parse(dataList));
-  }
+      .subscribe(data => {
+    this.dataList = data;
+    this.fillBarChartDetails(JSON.parse(data));
+}
   );
 }
      else{

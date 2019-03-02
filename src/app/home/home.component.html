@@ -19,7 +19,7 @@
           <a routerLink="/home/projectWise/projectWise" mat-menu-item>
           <mat-icon>filter_list</mat-icon> Project Wise
           </a>
-          <a routerLink="/home/monthWise/monthWise" mat-menu-item>
+           <a *ngIf="isAdmin" routerLink="/home/monthWise/monthWise" mat-menu-item>
             <mat-icon>filter_list</mat-icon> Ageing Report
             </a>
           <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
@@ -28,7 +28,7 @@
         </mat-menu>
 </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>
+      <mat-list-item *ngIf="isAdmin">
         <button mat-icon-button routerLink="/newreq">
           <mat-icon>border_color  </mat-icon>   New Requirement 
         </button>
@@ -201,7 +201,7 @@
         <mat-card>
             <div class="welcome_header">
                 <h5>Welcome {{username}}  </h5> 
-               </div>
+                </div>
            <button *ngIf="!showFiller" class="button-style" title="Hide Menu" (click)="drawer.toggle()" (click)="showFiller = !showFiller">
             <i class="fa fa-angle-double-left"></i>
           </button>
@@ -335,46 +335,9 @@
           <button *ngIf="showFiller" class="button-style" title="Show Menu" (click)="drawer.toggle()" (click)="showFiller = !showFiller">
             <i class="fa fa-angle-double-right"></i>
           </button>
+        <canvas id="bar-chart" width="800" height="320"></canvas>
 
-          <mat-form-field *ngIf="ageingDashboard">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-          </mat-form-field>
-        <span><h6> Total last 6 month requirement count month wise *  </h6></span>
-          <table mat-table [dataSource]="dataSource" matSort class="">
-            <ng-container matColumnDef="monthYear">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Month Year</th>
-              <td mat-cell *matCellDef="let element"> {{element.monthYear}} </td>
-            </ng-container>
-            <ng-container matColumnDef="count">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Req Count </th>
-                <td mat-cell *matCellDef="let element"> {{element.count}} </td>
-              </ng-container>
-
-            <ng-container matColumnDef="OpenOffshoreCount">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Open Offshore Count </th>
-              <td mat-cell *matCellDef="let element"> {{element.openOffReqCount}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="ClosedOffshoreCount">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Closed Offshore Count </th>
-                <td mat-cell *matCellDef="let element"> {{element.closeOffReqCount}} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="OpenOnshoreCount">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Open Onshore Count </th>
-                  <td mat-cell *matCellDef="let element"> {{element.openOnReqCount}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="ClosedOnshoreCount">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Closed Onshore Count</th>
-                    <td mat-cell *matCellDef="let element"> {{element.closeOnReqCount}} </td>
-                  </ng-container>
-          
-              <tr mat-header-row *matHeaderRowDef="columnAgeingOrder"></tr>
-            <tr mat-row *matRowDef="let row; columns: columnAgeingOrder;" (click)="getDetails(row)"></tr>
-          </table>
-          <mat-paginator [length]="resultsLength" [pageSize]="6"></mat-paginator>
-        </mat-card>
+      </mat-card>
       </div>
   </mat-card-content>
   </mat-drawer-content>

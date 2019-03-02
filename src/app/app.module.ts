@@ -62,6 +62,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { AuthGuard } from './auth.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,8 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ChartsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

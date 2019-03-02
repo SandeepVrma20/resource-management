@@ -33,4 +33,8 @@ export class LoginService {
      return this.httpClient.post(this.baseUrl  +'/employeeId', loginDetails);
   }
 
+  forgetPwd(loginDetails: LoginDetails): Observable<Object> {
+     return this.httpClient.post(this.baseUrl + '/changePassword', loginDetails);
+ }
+
 }

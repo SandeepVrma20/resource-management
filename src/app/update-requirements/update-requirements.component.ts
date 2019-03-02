@@ -19,7 +19,8 @@ export class UpdateRequirementsComponent implements OnInit {
   public events: any[] = []; // use later to display form changes
   dataList: RequirementDetails;
   public yesNoList = YesNoList;
-
+  isAdmin=true;
+  username:String;
   public reqPageData: RequirementDetails = new RequirementDetails();
 
   date = new FormControl(new Date());
@@ -42,6 +43,10 @@ export class UpdateRequirementsComponent implements OnInit {
   } // form builder simplify form initialization
 
   ngOnInit() {
+    this.username=localStorage.getItem('firstName');
+    if(null!=localStorage.getItem("isAdmin") && localStorage.getItem("isAdmin")=="false"){
+      this.isAdmin =false;
+     }
    
   }
 

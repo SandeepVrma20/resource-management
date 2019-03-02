@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
 
   salutation = Salutation;
   employeeDetails: EmployeeDetails = {};
+  isAdmin=true;
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -83,6 +84,9 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(null!=localStorage.getItem("isAdmin") && localStorage.getItem("isAdmin")=="false"){
+      this.isAdmin =false;
+     }
   }
 
   public fileOver(event) {

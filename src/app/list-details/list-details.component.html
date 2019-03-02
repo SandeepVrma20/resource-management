@@ -19,7 +19,7 @@
             <a routerLink="/home/projectWise/projectWise" mat-menu-item>
             <mat-icon>filter_list</mat-icon> Project Wise
             </a>
-            <a routerLink="/home/monthWise/monthWise" mat-menu-item>
+            <a *ngIf="isAdmin" routerLink="/home/monthWise/monthWise" mat-menu-item>
               <mat-icon>filter_list</mat-icon> Ageing Report
               </a>
             <a routerLink="/home/customFilter/customFilter"  mat-menu-item>
@@ -74,12 +74,12 @@
             <h5>Welcome {{username}}  </h5> 
            </div>
 
-        <button *ngIf="!showFiller"  class="button-style" title="Hide Menu" (click)="drawer.toggle()"
+   <button *ngIf="!showFiller"  class="button-style" title="Hide Menu" (click)="drawer.toggle()"
         (click)="showFiller = !showFiller" >
     <i class="fa fa-angle-double-left"></i>
    </button>
 
-  <button *ngIf="showFiller" class="button-style" title="Show Menu" (click)="drawer.toggle()" 
+    <button *ngIf="showFiller" class="button-style" title="Show Menu" (click)="drawer.toggle()" 
      (click)="showFiller = !showFiller" >
       <i class="fa fa-angle-double-right"></i>
    </button>
@@ -97,6 +97,7 @@
           <th mat-header-cell  style="column-width:20%;" *matHeaderCellDef mat-sort-header > Rgs Id. </th>
           <td mat-cell style="columns: width 20px;column-span: 20px;" *matCellDef="let element"> {{element.rgsId}} </td>
         </ng-container>
+        
         <ng-container matColumnDef="reqId">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Requirement Id. </th>
           <td mat-cell *matCellDef="let element"> {{element.reqId}} </td>

@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
     const target= event.target;
     const employeeId=target.querySelector('#employeeId').value;
     const password=target.querySelector('#password').value;
-    console.log(employeeId,password);
     if(password!="" && employeeId !=""){
       this.dataList= { 'employeeId': employeeId, 'password': password };
       this.loginService.getUserByEmpId(this.dataList)
@@ -72,6 +71,7 @@ export class LoginComponent implements OnInit {
      this.router.navigate(['home']);
      localStorage.setItem("firstName",responseMsg.firstName);
      localStorage.setItem("employeeId",responseMsg.employeeId);
+     localStorage.setItem("isAdmin",responseMsg.isAdmin);
     }else{
       this.isLoginFail=true;
      }

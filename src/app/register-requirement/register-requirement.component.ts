@@ -45,6 +45,7 @@ export class RegisterRequirementComponent implements OnInit  {
   filteredSkillLists: Observable<any[]>;
   listSkill: string[];
   username:string;
+  isAdmin=true;
   public reqPageData: RequirementDetails = new RequirementDetails();
 
   //skillCategory :FormControl= new FormControl();
@@ -60,6 +61,9 @@ export class RegisterRequirementComponent implements OnInit  {
 
 ngOnInit() {
   this.username=localStorage.getItem('firstName');
+  if(null!=localStorage.getItem("isAdmin") && localStorage.getItem("isAdmin")=="false"){
+    this.isAdmin =false;
+   }
     let parameter = this.route.snapshot.paramMap.get('reqId');
     if(null!=parameter){
       this.requirementService.getRequirementListById(parameter)
